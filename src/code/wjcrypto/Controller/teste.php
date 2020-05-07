@@ -1,7 +1,6 @@
 <?php
 
-    require "Account.php";
-    require "Holder.php";
+    require 'vendor/autoload.php';
 
     $umaConta = new Account();
     $outraConta = new Account();
