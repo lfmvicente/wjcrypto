@@ -1,5 +1,7 @@
 <?php
 
+    namespace 'wjcrypto/Controller';
+
     class Holder {
 
         private $name;
