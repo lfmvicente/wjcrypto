@@ -4,7 +4,13 @@
     {
 
         private $number;
-        public $balance;
+        private $balance;
+        private $holder;
+
+        public function __construct()
+        {
+            $this->balance = 0;
+        }
         
         public function getNumber():string
         {

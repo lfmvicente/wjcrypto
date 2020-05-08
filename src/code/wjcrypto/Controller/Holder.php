@@ -10,6 +10,7 @@
         private $address;
         private $username;
         private $password;
+        private $account;
 
         public function getName():string
         {
