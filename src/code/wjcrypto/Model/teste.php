@@ -4,7 +4,6 @@
 
     $umaConta = new Account();
     $outraConta = new Account();
-
     $umaConta->deposit(100);
     $umaConta->withdraw(100);
 
