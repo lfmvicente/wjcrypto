@@ -1,10 +1,18 @@
 <?php
 
+    namespace Model;
+
     class Account
     {
 
         private $number;
-        public $balance;
+        private $balance;
+        private $holder;
+
+        public function __construct()
+        {
+            $this->balance = 0;
+        }
         
         public function getNumber():string
         {
@@ -21,7 +29,7 @@
             if ($amount > 0) {
                return $this->balance += $amount;
             }
-            throw new Exception("Quantia Inválida");
+            return "Quantia Inválida";
         }
 
         public function withdraw($amount)
@@ -29,7 +37,7 @@
             if ($amount < $this->balance) {
                 return $this->balance -= $amount;
             }
-            throw new Exception("Sem Saldo");
+            return "Sem Saldo";
         }
 
         public function transfer($amount, $account)
@@ -39,6 +47,11 @@
                 $account->deposit($amount);
                 return $this;
             }
-            throw new Exception("Valor inválido");
+            return "Valor inválido";
+        }
+
+        public function getHolder():Holder
+        {
+            return $this->holder;
         }
     }

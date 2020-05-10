@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc40012416bb3fb9ffd6ad0329cf8a371
+class ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6
 {
     public static $prefixLengthsPsr4 = array (
         'W' => 
@@ -16,15 +16,15 @@ class ComposerStaticInitc40012416bb3fb9ffd6ad0329cf8a371
     public static $prefixDirsPsr4 = array (
         'Wjcrypto\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/App/src',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc40012416bb3fb9ffd6ad0329cf8a371::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc40012416bb3fb9ffd6ad0329cf8a371::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

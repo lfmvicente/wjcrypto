@@ -1,5 +1,7 @@
 <?php
 
+    namespace Model;
+
     class Holder {
 
         private $name;
@@ -10,6 +12,7 @@
         private $address;
         private $username;
         private $password;
+        private $account;
 
         public function getName():string
         {
@@ -59,5 +62,10 @@
         public function setAddress($address)
         {
             $this->address = $address;
+        }
+
+        public function getAccount():Account
+        {
+            return $this->account;
         }
     }
