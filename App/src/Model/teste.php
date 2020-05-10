@@ -2,8 +2,8 @@
 
     require 'vendor/autoload.php';
 
-    $umaConta = new wjcrypto\Model\Account();
-    $outraConta = new wjcrypto\Model\Account();
+    $umaConta = new Account();
+    $outraConta = new Account();
 
     $umaConta->deposit(100);
     $umaConta->withdraw(100);

@@ -6,6 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'wjcrypto\\Model\\Account' => $baseDir . '/src/Model/Account.php',
-    'wjcrypto\\Model\\Holder' => $baseDir . '/src/Model/Holder.php',
 );

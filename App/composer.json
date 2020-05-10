@@ -10,7 +10,7 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": {"wjcrypto\\": "src/"}
+        "psr-4": {"wjcrypto\\": "App/src/"}
     }
     
 }

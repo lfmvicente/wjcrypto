@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'wjcrypto\\' => array($baseDir . '/src'),
+    'wjcrypto\\' => array($baseDir . '/App/src'),
 );
