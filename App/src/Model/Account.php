@@ -1,10 +1,13 @@
 <?php
 
-    namespace wjcrypto\Model;
+    //namespace wjcrypto\Model;
+
+    require "../config.php";
 
     class Account
     {
 
+        private $idAccount;
         private $number;
         private $balance;
         private $holder;
@@ -14,15 +17,46 @@
             $this->balance = 0;
         }
         
+        public function getIdAccount():int
+        {
+            return $this->idAccount;
+        }
+
+        public function setIdAccount(int $idAccount)
+        {
+            $this->idAccount = $idAccount;
+        }
+
         public function getNumber():string
         {
             return $this->number;
+        }
+
+        public function setNumber($number)
+        {
+            $this->number = $number;
         }
 
         public function getBalance():float
         {
             return $this->balance;
         }
+
+        public function setBalance($balance)
+        {
+            $this->balance = $balance;
+        }
+
+        public function getHolder():Holder
+        {
+            return $this->holder;
+        }
+
+        public function setHolder($holder)
+        {
+            $this->holder = $holder;
+        }
+        
 
         public function deposit($amount)
         {
@@ -50,8 +84,30 @@
             return "Valor inválido";
         }
 
-        public function getHolder():Holder
+        public function loadById($idAccount)
         {
-            return $this->holder;
+            $sql = new Sql();
+
+            $results = $sql->select("SELECT * FROM account WHERE id = :ID", array(
+                ":ID"=>$idAccount
+            ));
+
+            if (count($results) > 0) {
+                $row = $results[0];
+
+                $this->setIdAccount($row['id']);
+                $this->setNumber($row['account_number']);
+                $this->setBalance($row['balance']);
+                $this->setHolder($row['id_holder']);
+            }
+        }
+
+        public function __toString()
+        {
+            return json_encode(array(
+                "id"=>$this->getIdAccount(),
+                "number"=>$this->getNumber(),
+                "balance"=>$this->getBalance()
+            ));
         }
     }

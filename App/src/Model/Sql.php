@@ -1,5 +1,7 @@
 <?php
 
+//namespace wjcrypto\Model;
+
 class Sql extends PDO{
 
     const HOST = 'localhost';
