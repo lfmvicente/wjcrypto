@@ -1,0 +1,27 @@
+Database WJCrypto
+
+CREATA DATABASE ‘wjcrypto’
+
+Table Account
+
+CREATE TABLE `wjcrypto.`account` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `account_number` VARCHAR(45) NULL,
+  `balance` DECIMAL NULL DEFAULT 0,
+  `id_holder` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+Table Holder
+
+CREATE TABLE `wjcrypto`.`holder` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `document` VARCHAR(14) NOT NULL DEFAULT 0,
+  `additional_document` VARCHAR(15) NULL,
+  `dt_origin` DATETIME NULL,
+  `phone` VARCHAR(15) NULL,
+  `address` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `id_account` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
