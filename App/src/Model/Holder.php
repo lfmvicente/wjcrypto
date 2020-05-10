@@ -109,7 +109,7 @@
 
         public function getAccount():Account
         {
-            return $this->account;
+            return $this->account->getNumber();
         }
 
         public function setAccount($account)

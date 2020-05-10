@@ -49,7 +49,7 @@
 
         public function getHolder():Holder
         {
-            return $this->holder;
+            return $this->holder->getName();
         }
 
         public function setHolder($holder)
