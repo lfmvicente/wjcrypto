@@ -1,6 +1,6 @@
 <?php
 
-    namespace Model;
+    namespace wjcrypto\Model;
 
     class Holder {
 

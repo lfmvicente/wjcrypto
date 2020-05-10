@@ -16,8 +16,13 @@ class ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6
     public static $prefixDirsPsr4 = array (
         'wjcrypto\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src/Model',
+            0 => __DIR__ . '/../..' . '/src',
         ),
+    );
+
+    public static $classMap = array (
+        'wjcrypto\\Model\\Account' => __DIR__ . '/../..' . '/src/Model/Account.php',
+        'wjcrypto\\Model\\Holder' => __DIR__ . '/../..' . '/src/Model/Holder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +30,7 @@ class ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd61c397a61dafe9a4a72a10b71eaddc6::$classMap;
 
         }, null, ClassLoader::class);
     }
