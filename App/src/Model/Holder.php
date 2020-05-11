@@ -1,12 +1,11 @@
 <?php
 
     //namespace wjcrypto\Model;
-    //require "Sql.php";
     require "../config.php";
 
     class Holder {
 
-        private $idHolder;
+        private $id;
         private $name;
         private $document;
         private $additionalDocument;
@@ -17,27 +16,27 @@
         private $password;
         private $account;
 
-        public function getIdHolder():int
+        public function getId()
         {
-            return $this->idHolder;
+            return $this->id;
         }
 
-        public function setIdHolder(int $idHolder)
+        public function setId($id)
         {
-            $this->idHolder = $idHolder;
+            $this->id = $id;
         }
 
-        public function getName():string
+        public function getName()
         {
             return $this->name;
         }
 
-        public function setName(string $name)
+        public function setName($name)
         {
             $this->name = $name;
         }
 
-        public function getDocument():string
+        public function getDocument()
         {
             return $this->document;
         }
@@ -47,7 +46,7 @@
             $this->document = $document;
         }
 
-        public function getAdditionalDocument():string
+        public function getAdditionalDocument()
         {
             return $this->additionalDocument;
         }
@@ -67,7 +66,7 @@
             $this->dtOrigin = $dtOrigin;
         }
 
-        public function getPhone():string
+        public function getPhone()
         {
             return $this->phone;
         }
@@ -77,7 +76,7 @@
             $this->phone = $phone;
         }
 
-        public function getAddress():string
+        public function getAddress()
         {
             return $this->address;
         }
@@ -87,7 +86,7 @@
             $this->address = $address;
         }
 
-        public function getUsername():string
+        public function getUsername()
         {
             return $this->username;
         }
@@ -97,7 +96,7 @@
             $this->username = $username;
         }
 
-        public function getPassword():string
+        public function getPassword()
         {
             return $this->password;
         }
@@ -107,28 +106,28 @@
             $this->password = $password;
         }
 
-        public function getAccount():Account
+        public function getAccountNumber()
         {
             return $this->account->getNumber();
         }
 
         public function setAccount($account)
         {
-            $this->account = $account;
+            $this->account->number = $account;
         }
 
-        public function loadById($idHolder)
+        public function loadById($id)
         {
             $sql = new Sql();
 
             $results = $sql->select("SELECT * FROM holder WHERE id = :ID", array(
-                ":ID"=>$idHolder
+                ":ID"=>$id
             ));
 
             if (count($results) > 0) {
                 $row = $results[0];
 
-                $this->setIdHolder($row['id']);
+                $this->setId($row['id']);
                 $this->setName($row['name']);
                 $this->setDocument($row['document']);
                 $this->setAdditionalDocument($row['additional_document']);
@@ -136,16 +135,24 @@
                 $this->setPhone($row['phone']);
                 $this->setAddress($row['address']);
                 $this->setUsername($row['username']);
-                $this->setAccount($row['account']);
+                $this->setPassword($row['password']);
+                $this->setAccount($row['account_number']);
             }
         }
 
         public function __toString()
         {
             return json_encode(array(
-                "id"=>$this->getIdHolder(),
+                "id"=>$this->getId(),
                 "name"=>$this->getName(),
-                "document"=>$this->getDocument()
+                "document"=>$this->getDocument(),
+                "additional_document"=>$this->getAdditionalDocument(),
+                "dt_origin"=>$this->getDtOrigin(),
+                "phone"=>$this->getPhone(),
+                "address"=>$this->getAddress(),
+                "username"=>$this->getUsername(),
+                "password"=>$this->getPassword(),
+                "account_number"=>$this->account->number
             ));
         }
     }

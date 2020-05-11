@@ -12,6 +12,8 @@
     $user->loadById(1);
     echo $user;*/
 
-    $account = new Account;
-    $account->loadById(1);
-    echo $account;
+    
+
+    $holder = new Account();
+    $holder->loadById(1);
+    echo $holder;

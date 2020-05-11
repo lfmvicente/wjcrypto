@@ -7,7 +7,7 @@
     class Account
     {
 
-        private $idAccount;
+        private $id;
         private $number;
         private $balance;
         private $holder;
@@ -17,17 +17,17 @@
             $this->balance = 0;
         }
         
-        public function getIdAccount():int
+        public function getId()
         {
-            return $this->idAccount;
+            return $this->id;
         }
 
-        public function setIdAccount(int $idAccount)
+        public function setId($id)
         {
-            $this->idAccount = $idAccount;
+            $this->id = $id;
         }
 
-        public function getNumber():string
+        public function getNumber()
         {
             return $this->number;
         }
@@ -37,7 +37,7 @@
             $this->number = $number;
         }
 
-        public function getBalance():float
+        public function getBalance()
         {
             return $this->balance;
         }
@@ -47,14 +47,14 @@
             $this->balance = $balance;
         }
 
-        public function getHolder():Holder
+        public function getHolderId()
         {
-            return $this->holder->getName();
+            return $this->holder->getIdHolder();
         }
 
-        public function setHolder($holder)
+        public function setHolderId($holder)
         {
-            $this->holder = $holder;
+            $this->holder->id = $holder;
         }
         
 
@@ -84,30 +84,31 @@
             return "Valor inválido";
         }
 
-        public function loadById($idAccount)
+        public function loadById($id)
         {
             $sql = new Sql();
 
             $results = $sql->select("SELECT * FROM account WHERE id = :ID", array(
-                ":ID"=>$idAccount
+                ":ID"=>$id
             ));
 
             if (count($results) > 0) {
                 $row = $results[0];
 
-                $this->setIdAccount($row['id']);
+                $this->setId($row['id']);
                 $this->setNumber($row['account_number']);
                 $this->setBalance($row['balance']);
-                $this->setHolder($row['id_holder']);
+                $this->setHolderId($row['id_holder']);
             }
         }
 
         public function __toString()
         {
             return json_encode(array(
-                "id"=>$this->getIdAccount(),
+                "id"=>$this->getId(),
                 "number"=>$this->getNumber(),
-                "balance"=>$this->getBalance()
+                "balance"=>$this->getBalance(),
+                "id_holder"=>$this->holder->id
             ));
         }
     }
