@@ -8,7 +8,7 @@ CREATE TABLE `wjcrypto.`account` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `account_number` VARCHAR(45) NULL,
   `balance` DECIMAL NULL DEFAULT 0,
-  `id_holder` VARCHAR(45) NULL,
+  `id_holder` INT NULL,
   PRIMARY KEY (`id`));
 
 Table Holder
