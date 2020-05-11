@@ -23,5 +23,5 @@ CREATE TABLE `wjcrypto`.`holder` (
   `address` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `id_account` VARCHAR(45) NULL,
+  `account_number` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
