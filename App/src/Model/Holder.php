@@ -116,6 +116,37 @@
             $this->account->number = $account;
         }
 
+        public function Login($username, $password)
+        {
+            $sql = new Sql();
+
+            $results = $sql->select(
+                "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
+                 array(
+                    ":USERNAME"=>$username,
+                    ":PASSWORD"=>$password
+                )
+            );
+
+            if (count($results) > 0) {
+                $row = $results[0];
+
+                $this->setId($row['id']);
+                $this->setName($row['name']);
+                $this->setDocument($row['document']);
+                $this->setAdditionalDocument($row['additional_document']);
+                $this->setDtOrigin(new DateTime($row['dt_origin']));
+                $this->setPhone($row['phone']);
+                $this->setAddress($row['address']);
+                $this->setUsername($row['username']);
+                $this->setPassword($row['password']);
+                $this->setAccount($row['account_number']);
+                return $this;
+            }
+
+            throw new Exception("Login e/ou senha inválidos");
+        }
+
         public function loadById($id)
         {
             $sql = new Sql();
@@ -131,7 +162,7 @@
                 $this->setName($row['name']);
                 $this->setDocument($row['document']);
                 $this->setAdditionalDocument($row['additional_document']);
-                $this->setDtOrigin($row['dt_origin']);
+                $this->setDtOrigin(new DateTime($row['dt_origin']));
                 $this->setPhone($row['phone']);
                 $this->setAddress($row['address']);
                 $this->setUsername($row['username']);
@@ -147,7 +178,7 @@
                 "name"=>$this->getName(),
                 "document"=>$this->getDocument(),
                 "additional_document"=>$this->getAdditionalDocument(),
-                "dt_origin"=>$this->getDtOrigin(),
+                "dt_origin"=>$this->getDtOrigin()->format("d/m/Y"),
                 "phone"=>$this->getPhone(),
                 "address"=>$this->getAddress(),
                 "username"=>$this->getUsername(),

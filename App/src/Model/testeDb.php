@@ -14,6 +14,6 @@
 
     
 
-    $holder = new Account();
-    $holder->loadById(1);
+    $holder = new Holder();
+    $holder->login("felipe", "felip");
     echo $holder;
