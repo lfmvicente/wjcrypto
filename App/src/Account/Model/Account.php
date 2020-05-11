@@ -1,8 +1,8 @@
 <?php
 
-    //namespace wjcrypto\Model;
+    declare(strict_types=1);
 
-    require "../config.php";
+    namespace Wjcrypto\Account\Model;
 
     class Account
     {
@@ -55,8 +55,7 @@
         public function setHolderId($holder)
         {
             $this->holder->id = $holder;
-        }
-        
+        }        
 
         public function deposit($amount)
         {
@@ -84,23 +83,7 @@
             return "Valor inválido";
         }
 
-        public function loadById($id)
-        {
-            $sql = new Sql();
-
-            $results = $sql->select("SELECT * FROM account WHERE id = :ID", array(
-                ":ID"=>$id
-            ));
-
-            if (count($results) > 0) {
-                $row = $results[0];
-
-                $this->setId($row['id']);
-                $this->setNumber($row['account_number']);
-                $this->setBalance($row['balance']);
-                $this->setHolderId($row['id_holder']);
-            }
-        }
+        
 
         public function __toString()
         {

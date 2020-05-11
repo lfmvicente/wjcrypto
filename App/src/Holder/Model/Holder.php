@@ -1,7 +1,10 @@
 <?php
 
-    //namespace wjcrypto\Model;
-    require "../config.php";
+    declare(strict_types=1);
+
+    namespace Wjcrypto\Holder\Model;
+
+    use Wjcrypto\Holder\Exception\InvalidLoginException;
 
     class Holder {
 
@@ -114,62 +117,7 @@
         public function setAccount($account)
         {
             $this->account->number = $account;
-        }
-
-        public function Login($username, $password)
-        {
-            $sql = new Sql();
-
-            $results = $sql->select(
-                "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
-                 array(
-                    ":USERNAME"=>$username,
-                    ":PASSWORD"=>$password
-                )
-            );
-
-            if (count($results) > 0) {
-                $row = $results[0];
-
-                $this->setId($row['id']);
-                $this->setName($row['name']);
-                $this->setDocument($row['document']);
-                $this->setAdditionalDocument($row['additional_document']);
-                $this->setDtOrigin(new DateTime($row['dt_origin']));
-                $this->setPhone($row['phone']);
-                $this->setAddress($row['address']);
-                $this->setUsername($row['username']);
-                $this->setPassword($row['password']);
-                $this->setAccount($row['account_number']);
-                return $this;
-            }
-
-            throw new Exception("Login e/ou senha inválidos");
-        }
-
-        public function loadById($id)
-        {
-            $sql = new Sql();
-
-            $results = $sql->select("SELECT * FROM holder WHERE id = :ID", array(
-                ":ID"=>$id
-            ));
-
-            if (count($results) > 0) {
-                $row = $results[0];
-
-                $this->setId($row['id']);
-                $this->setName($row['name']);
-                $this->setDocument($row['document']);
-                $this->setAdditionalDocument($row['additional_document']);
-                $this->setDtOrigin(new DateTime($row['dt_origin']));
-                $this->setPhone($row['phone']);
-                $this->setAddress($row['address']);
-                $this->setUsername($row['username']);
-                $this->setPassword($row['password']);
-                $this->setAccount($row['account_number']);
-            }
-        }
+        }    
 
         public function __toString()
         {
