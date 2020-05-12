@@ -2,29 +2,28 @@
 <head>
     <meta charset="UTF-8"/>
     <link href="css/Style.css" rel="stylesheet" media="all" />
-    <title>WJ Crypto</title>
+    <title>WJCrypto</title>
 </head>
-<body>
+<body class="home">
 	<main>
 		<img src=images/wjcrypto_logo.png></img>
-    	<form action="#" method="post">
+    	<form action="/wjcrypto/App/src/Holder/Model/ResourceModel/HolderResource.php" method="post">
 
     		<div>
         		<label for="Login" class="label">Usuário:</label>        	
         		<input type="text" name="username" />
     		</div>
-
     		<div>
         		<label for="Password" class="label">Senha:</label>        	
         		<input class="field" type="password" name="password" />
     		</div>
     		<div class="button">
-        		<input type="button" class="button" value="Acessar">
-    		</div>
-    		<div class="button_sign">
-        		<input type="button" class="button_sign" value="Cadastre-se">
+        		<input type="submit" class="button" value="Acessar">
     		</div>
     	</form>
+    	<div class="button_sign">
+        	<a href="home.html" class="button_sign">Cadastre-se</a>
+    	</div>
     </main>
 </body>
 </html>

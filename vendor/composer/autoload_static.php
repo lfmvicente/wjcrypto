@@ -7,17 +7,26 @@ namespace Composer\Autoload;
 class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
 {
     public static $prefixLengthsPsr4 = array (
-        'w' => 
+        'W' => 
         array (
-            'wjcrypto\\' => 9,
+            'Wjcrypto\\' => 9,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'wjcrypto\\' => 
+        'Wjcrypto\\' => 
         array (
             0 => __DIR__ . '/../..' . '/App/src',
         ),
+    );
+
+    public static $classMap = array (
+        'Wjcrypto\\Account\\Model\\Account' => __DIR__ . '/../..' . '/App/src/Account/Model/Account.php',
+        'Wjcrypto\\Account\\Model\\ResourceModel\\AccountResource' => __DIR__ . '/../..' . '/App/src/Account/Model/ResourceModel/AccountResource.php',
+        'Wjcrypto\\Holder\\Exception\\InvalidLoginException' => __DIR__ . '/../..' . '/App/src/Holder/Exception/InvalidLoginException.php',
+        'Wjcrypto\\Holder\\Model\\Holder' => __DIR__ . '/../..' . '/App/src/Holder/Model/Holder.php',
+        'Wjcrypto\\Holder\\Model\\ResourceModel\\HolderResource' => __DIR__ . '/../..' . '/App/src/Holder/Model/ResourceModel/HolderResource.php',
+        'Wjcrypto\\SqlDb\\Model\\ResourceModel\\Sql' => __DIR__ . '/../..' . '/App/src/SqlDb/Model/ResourceModel/Sql.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -25,6 +34,7 @@ class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$classMap;
 
         }, null, ClassLoader::class);
     }

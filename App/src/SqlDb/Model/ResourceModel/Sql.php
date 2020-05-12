@@ -1,8 +1,8 @@
 <?php
 
-//namespace wjcrypto\Model;
+namespace Wjcrypto\SqlDb\Model\ResourceModel;
 
-class Sql extends PDO{
+class Sql extends \PDO{
 
     const HOST = 'localhost';
     const DB = 'wjcrypto';
@@ -12,7 +12,7 @@ class Sql extends PDO{
     private $conn;
 
 	public function __construct(){
-		$this->conn = new PDO (
+		$this->conn = new \PDO (
             "mysql:host=".Sql::HOST.";
             dbname=".Sql::DB,
             Sql::USER,
@@ -45,7 +45,7 @@ class Sql extends PDO{
 
 	public function select($rawQuery, $params = array()):array{
 		$stmt = $this->query($rawQuery, $params);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 
 

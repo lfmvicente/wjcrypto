@@ -33,7 +33,7 @@
                 $this->holder->setName($row['name']);
                 $this->holder->setDocument($row['document']);
                 $this->holder->setAdditionalDocument($row['additional_document']);
-                $this->holder->setDtOrigin(new DateTime($row['dt_origin']));
+                $this->holder->setDtOrigin(new \DateTime($row['dt_origin']));
                 $this->holder->setPhone($row['phone']);
                 $this->holder->setAddress($row['address']);
                 $this->holder->setUsername($row['username']);
@@ -43,7 +43,7 @@
             return $this->holder;
         }
 
-        public function Login($username, $password)
+        public function login($username, $password)
         {
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
@@ -60,7 +60,7 @@
                 $this->holder->setName($row['name']);
                 $this->holder->setDocument($row['document']);
                 $this->holder->setAdditionalDocument($row['additional_document']);
-                $this->holder->setDtOrigin(new DateTime($row['dt_origin']));
+                $this->holder->setDtOrigin(new \DateTime($row['dt_origin']));
                 $this->holder->setPhone($row['phone']);
                 $this->holder->setAddress($row['address']);
                 $this->holder->setUsername($row['username']);
