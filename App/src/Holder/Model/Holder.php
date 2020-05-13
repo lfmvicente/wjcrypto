@@ -117,7 +117,7 @@
 
         public function setAccountNumber($account)
         {
-            $this->account->number = $account;
+            $this->account = $account;
         }    
 
         public function __toString()
@@ -132,7 +132,7 @@
                 "address"=>$this->getAddress(),
                 "username"=>$this->getUsername(),
                 "password"=>$this->getPassword(),
-                "account_number"=>$this->getAccountNumber()
+                "account_number"=>'888'
             ));
         }
     }

@@ -29,7 +29,7 @@
                 $row = $results[0];
 
                 $this->account->setId($row['id']);
-                $this->account->generateNumber($row['account_number']);
+                $this->account->setNumber($row['account_number']);
                 $this->account->setBalance($row['balance']);
                 $this->account->setHolderId($row['id_holder']);
             }
@@ -41,7 +41,7 @@
             $results = $this->sql->query(
                 "INSERT INTO account (account_number, balance, id_holder)
                     VALUES (:number, :balance, :id_holder)", array(
-                        "number"=>$account->getNumber(),
+                        "number"=>$account->generateNumber(),
                         "balance"=>$account->getBalance(),
                         "id_holder"=>$account->getHolderId()
             ));

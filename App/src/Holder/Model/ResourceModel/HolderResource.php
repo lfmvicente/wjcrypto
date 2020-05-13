@@ -4,6 +4,7 @@
 
     namespace Wjcrypto\Holder\Model\ResourceModel;
 
+    use Wjcrypto\Account\Model\Account;
     use Wjcrypto\Holder\Exception\InvalidLoginException;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Holder\Model\Holder;
@@ -38,7 +39,7 @@
                 $this->holder->setAddress($row['address']);
                 $this->holder->setUsername($row['username']);
                 $this->holder->setPassword($row['password']);
-                $this->holder->setAccount($row['account_number']);
+                $this->holder->setAccountNumber($row['account_number']);
             }
             return $this->holder;
         }
@@ -83,11 +84,11 @@
                     "document"=>$holder->getDocument(),
                     "additional_document"=>$holder->getAdditionalDocument(),
                     "dtorigin"=>$holder->getDtOrigin(),
-                    "phone"=>$holder->getDtOrigin(),
+                    "phone"=>$holder->getPhone(),
                     "address"=>$holder->getAddress(),
                     "username"=>$holder->getUsername(),
                     "password"=>$holder->getPassword(),
-                    "account_number"=>"777"
+                    "account_number"=>$holder->getAccountNumber()->getNumber()
             ));
             return $this;
         }
@@ -98,6 +99,37 @@
                 "ID"=>$id
             ));
             return $this;
+        }
+
+        public function update(Holder $holder)
+        {
+            $results = $this->sql->query(
+                "UPDATE holder SET
+                    name = :name,
+                    document = :document,
+                    additional_document = :additional_document,
+                    dt_origin = :dtorigin,
+                    phone = :phone,
+                    address = :address,
+                    username = :username,
+                    password = :password
+                    WHERE id = :ID", array(
+                "ID"=>$holder->getId(),
+                "name"=>$holder->getName(),
+                "document"=>$holder->getDocument(),
+                "additional_document"=>$holder->getAdditionalDocument(),
+                "dtorigin"=>$holder->getDtOrigin(),
+                "phone"=>$holder->getDtOrigin(),
+                "address"=>$holder->getAddress(),
+                "username"=>$holder->getUsername(),
+                "password"=>$holder->getPassword()
+            ));
+            return $this;
+        }
+
+        public function createAccount(Account $account)
+        {
+
         }
     }
 

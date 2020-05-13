@@ -14,11 +14,10 @@
         private $balance;
         private $holder;
 
-        public function __construct($holder)
+        public function __construct()
         {
             $this->balance = 0;
             $this->number = 1000;
-            $this->holder = $holder;
         }
         
         public function getId()
@@ -36,9 +35,14 @@
             return $this->number;
         }
 
-        public function generateNumber($holder)
+        public function setNumber($number)
         {
-            $this->number += $holder->getId();
+            $this->number = $number;
+        }
+
+        public function generateNumber()
+        {
+            return $this->number + $this->getId();
         }
 
         public function getBalance()
@@ -56,9 +60,9 @@
             return $this->holder->getId();
         }
 
-        public function setHolderId(Holder $holder)
+        public function setHolderId($holder)
         {
-            $this->holder = $holder->getId();
+            $this->holder = $holder;
         }        
 
         public function deposit($amount)
