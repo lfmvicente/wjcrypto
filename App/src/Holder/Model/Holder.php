@@ -132,7 +132,7 @@
                 "address"=>$this->getAddress(),
                 "username"=>$this->getUsername(),
                 "password"=>$this->getPassword(),
-                "account_number"=>'888'
+                "account_number"=>$this->getAccountNumber()
             ));
         }
     }
