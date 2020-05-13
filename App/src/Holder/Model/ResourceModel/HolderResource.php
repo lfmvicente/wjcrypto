@@ -65,10 +65,39 @@
                 $this->holder->setAddress($row['address']);
                 $this->holder->setUsername($row['username']);
                 $this->holder->setPassword($row['password']);
-                $this->holder->setAccount($row['account_number']);
+                $this->holder->setAccountNumber($row['account_number']);
                 return $this->holder;
             }
-            
             throw new InvalidLoginException("Login e/ou senha inválidos");
         }
+
+        public function insert(Holder $holder)
+        {
+            $results = $this->sql->query(
+                "INSERT INTO holder 
+                (name, document, additional_document, dt_origin, phone, 
+                address, username, password, account_number)
+                VALUES (:name, :document, :additional_document, :dtorigin, 
+                :phone, :address, :username, :password, :account_number)", array(
+                    "name"=>$holder->getName(),
+                    "document"=>$holder->getDocument(),
+                    "additional_document"=>$holder->getAdditionalDocument(),
+                    "dtorigin"=>$holder->getDtOrigin(),
+                    "phone"=>$holder->getDtOrigin(),
+                    "address"=>$holder->getAddress(),
+                    "username"=>$holder->getUsername(),
+                    "password"=>$holder->getPassword(),
+                    "account_number"=>"777"
+            ));
+            return $this;
+        }
+
+        public function delete($id)
+        {
+            $result = $this->sql->query("DELETE FROM holder WHERE id = :ID", array(
+                "ID"=>$id
+            ));
+            return $this;
+        }
     }
+

@@ -4,6 +4,8 @@
 
     namespace Wjcrypto\Account\Model;
 
+    use Wjcrypto\Holder\Model\Holder;
+
     class Account
     {
 
@@ -12,9 +14,11 @@
         private $balance;
         private $holder;
 
-        public function __construct()
+        public function __construct($holder)
         {
             $this->balance = 0;
+            $this->number = 1000;
+            $this->holder = $holder;
         }
         
         public function getId()
@@ -32,9 +36,9 @@
             return $this->number;
         }
 
-        public function setNumber($number)
+        public function generateNumber($holder)
         {
-            $this->number = $number;
+            $this->number += $holder->getId();
         }
 
         public function getBalance()
@@ -49,12 +53,12 @@
 
         public function getHolderId()
         {
-            return $this->holder->getIdHolder();
+            return $this->holder->getId();
         }
 
-        public function setHolderId($holder)
+        public function setHolderId(Holder $holder)
         {
-            $this->holder->id = $holder;
+            $this->holder = $holder->getId();
         }        
 
         public function deposit($amount)
@@ -83,15 +87,14 @@
             return "Valor inválido";
         }
 
-        
-
         public function __toString()
         {
             return json_encode(array(
                 "id"=>$this->getId(),
                 "number"=>$this->getNumber(),
                 "balance"=>$this->getBalance(),
-                "id_holder"=>$this->holder->id
+                "id_holder"=>$this->getHolderId()
             ));
         }
     }
+

@@ -4,6 +4,7 @@
 
     namespace Wjcrypto\Holder\Model;
 
+    use Wjcrypto\Account\Model\Account;
     use Wjcrypto\Holder\Exception\InvalidLoginException;
 
     class Holder {
@@ -114,7 +115,7 @@
             return $this->account->getNumber();
         }
 
-        public function setAccount($account)
+        public function setAccountNumber($account)
         {
             $this->account->number = $account;
         }    
@@ -126,12 +127,13 @@
                 "name"=>$this->getName(),
                 "document"=>$this->getDocument(),
                 "additional_document"=>$this->getAdditionalDocument(),
-                "dt_origin"=>$this->getDtOrigin()->format("d/m/Y"),
+                "dt_origin"=>$this->getDtOrigin(),
                 "phone"=>$this->getPhone(),
                 "address"=>$this->getAddress(),
                 "username"=>$this->getUsername(),
                 "password"=>$this->getPassword(),
-                "account_number"=>$this->account->number
+                "account_number"=>$this->getAccountNumber()
             ));
         }
     }
+
