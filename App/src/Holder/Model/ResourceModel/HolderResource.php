@@ -49,6 +49,7 @@
         public function login($username, $password)
         {
             $crypt = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
+
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
                  array(

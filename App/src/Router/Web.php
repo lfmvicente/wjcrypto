@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wjcrypto\Routes;
+namespace Wjcrypto\Router;
 
 
     class Web
