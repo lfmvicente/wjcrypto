@@ -107,7 +107,8 @@
 
         public function setPassword($password)
         {
-            $this->password = $password;
+            $this->password = openssl_encrypt($password,'AES-128-CBC','SECRET',
+                0, 'SECRET_IV');
         }
 
         public function getAccountNumber()

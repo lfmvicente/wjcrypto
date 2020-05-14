@@ -10,6 +10,8 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
 
+    //password_hash($password, PASSWORD_DEFAULT);
+
     $sql = new Sql();
     $holder = new Holder();
     $holderRes = new HolderResource($sql, $holder);
@@ -17,7 +19,10 @@
     $holderRes->login($username, $password);
 
     if (isset($holderRes)) {
-        //session_start();
-        header('Location: home.html');
+        session_start();
+        header('Location: Html/home.html');
+    }else{
+        header('Location: Html/index.html');
     }
+
 

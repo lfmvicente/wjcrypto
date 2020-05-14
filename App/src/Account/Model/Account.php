@@ -17,7 +17,6 @@
         public function __construct()
         {
             $this->balance = 0;
-            $this->number = 1000;
         }
         
         public function getId()

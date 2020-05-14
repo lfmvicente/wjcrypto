@@ -17,6 +17,7 @@
   "require": {
     "ext-pdo": "*",
         "pecee/simple-router": "dev-master",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-openssl": "*"
   }
 }

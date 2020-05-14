@@ -41,7 +41,7 @@
             $results = $this->sql->query(
                 "INSERT INTO account (account_number, balance, id_holder)
                     VALUES (:number, :balance, :id_holder)", array(
-                        "number"=>$account->generateNumber(),
+                        "number"=>$account->getNumber(),
                         "balance"=>$account->getBalance(),
                         "id_holder"=>$account->getHolderId()
             ));
@@ -53,6 +53,15 @@
             $results = $this->sql->query("DELETE FROM account WHERE id = :ID",
                 array("ID"=>$id));
             return $this;
+        }
+
+        public function update(Account $account)
+        {
+            $results = $this->sql->query(
+                "UPDATE account SET account_number = :NUMBER WHERE id = :ID", array(
+                ":ID"=>$account->getId(),
+                ":NUMBER"=>$account->generateNumber()
+            ));
         }
     }
 

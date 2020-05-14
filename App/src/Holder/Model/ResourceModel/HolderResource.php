@@ -9,9 +9,11 @@
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Holder\Model\Holder;
 
-    class HolderResource 
-    {
+    define('SECRET_IV', pack('a16', 'wjcrypto'));
+    define('SECRET', pack('a16', 'wjcrypto'));
 
+    class HolderResource
+    {
         private $sql;
         private $holder;
 
@@ -46,11 +48,12 @@
 
         public function login($username, $password)
         {
+            $crypt = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
                  array(
                     ":USERNAME"=>$username,
-                    ":PASSWORD"=>$password
+                    ":PASSWORD"=>$crypt
                 )
             );
 
@@ -88,7 +91,7 @@
                     "address"=>$holder->getAddress(),
                     "username"=>$holder->getUsername(),
                     "password"=>$holder->getPassword(),
-                    "account_number"=>$holder->getAccountNumber()->getNumber()
+                    "account_number"=>$holder->getAccountNumber()
             ));
             return $this;
         }
@@ -119,7 +122,7 @@
                 "document"=>$holder->getDocument(),
                 "additional_document"=>$holder->getAdditionalDocument(),
                 "dtorigin"=>$holder->getDtOrigin(),
-                "phone"=>$holder->getDtOrigin(),
+                "phone"=>$holder->getPhone(),
                 "address"=>$holder->getAddress(),
                 "username"=>$holder->getUsername(),
                 "password"=>$holder->getPassword()
