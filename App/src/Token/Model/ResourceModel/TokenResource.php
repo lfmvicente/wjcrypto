@@ -31,5 +31,13 @@
             ));
             return $this;
         }
+
+        public function delete($token)
+        {
+            $result = $this->sql->query("DELETE FROM token WHERE token = :token", array(
+                "token"=>$token
+            ));
+            return $this;
+        }
     }
 

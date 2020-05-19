@@ -130,5 +130,17 @@
             ));
             return $this;
         }
+        public function linkHolder(Account $account, Holder $holder)
+        {
+            $accountNumber = $account->getNumber();
+            $this->holder->setAccountNumber($accountNumber);
+            $id = $this->holder->getId();
+
+            $results = $this->sql->query(
+                "UPDATE holder SET account_number = :number WHERE id = :ID", array(
+                ":ID"=>$id,
+                ":number"=>$accountNumber
+            ));
+        }
     }
 

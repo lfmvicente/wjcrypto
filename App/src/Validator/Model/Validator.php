@@ -4,9 +4,7 @@
 
     namespace Wjcrypto\Validator\Model;
 
-    use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
-    use Wjcrypto\Token\Model\Token;
 
     define('SECRET_IV', pack('a16', 'wjcrypto'));
     define('SECRET', pack('a16', 'wjcrypto'));

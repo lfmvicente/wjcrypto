@@ -39,11 +39,6 @@
             $this->number = $number;
         }
 
-        public function generateNumber()
-        {
-            return $this->number + $this->getId();
-        }
-
         public function getBalance()
         {
             return $this->balance;
@@ -56,7 +51,7 @@
 
         public function getHolderId()
         {
-            return $this->holder->getId();
+            return $this->holder;
         }
 
         public function setHolderId($holder)

@@ -4,6 +4,7 @@
 
     namespace Wjcrypto\Account\Model\ResourceModel;
 
+    use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Account\Model\Account;
 
@@ -41,7 +42,7 @@
             $results = $this->sql->query(
                 "INSERT INTO account (account_number, balance, id_holder)
                     VALUES (:number, :balance, :id_holder)", array(
-                        "number"=>$account->getNumber(),
+                        "number"=>uniqid(),
                         "balance"=>$account->getBalance(),
                         "id_holder"=>$account->getHolderId()
             ));
@@ -60,7 +61,20 @@
             $results = $this->sql->query(
                 "UPDATE account SET account_number = :NUMBER WHERE id = :ID", array(
                 ":ID"=>$account->getId(),
-                ":NUMBER"=>$account->generateNumber()
+                ":NUMBER"=>$account->getNumber()
+            ));
+        }
+
+        public function linkHolder(Account $account, Holder $holder)
+        {
+            $idHolder = $holder->getId();
+            $this->account->setHolderId($idHolder);
+            $id = $this->account->getId();
+
+            $results = $this->sql->query(
+                "UPDATE account SET id_holder = :idHolder WHERE id = :ID", array(
+                ":ID"=>$id,
+                ":idHolder"=>$idHolder
             ));
         }
     }

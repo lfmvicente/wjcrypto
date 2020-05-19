@@ -14,4 +14,3 @@ $tokenRes = new TokenResource($sql, $token);
 $token->generateToken(true);
 
 $tokenRes->save($token);
-var_dump($tokenRes);

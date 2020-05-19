@@ -10,16 +10,19 @@ use Wjcrypto\Holder\Model\Holder;
 $sql = new Sql();
 
 $holder = new Holder();
-//$holder->setId(6);
+$holder->setId(11);
 
 $account = new Account();
+$account->setId(28);
+
 $accountRes = new AccountResource($sql, $account);
 
 //$account->setId(21);
-$account->setHolderId($holder);
+//$account->setHolderId($holder);
 //$account->generateNumber($holder);
 //$account->setHolderId($holder);
 
-$accountRes->insert($account);
+$accountRes->linkHolder($account, $holder);
+//$accountRes->insert($account);
 //$accountRes->update($account);
 var_dump($accountRes);

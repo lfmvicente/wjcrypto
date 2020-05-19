@@ -7,17 +7,17 @@
     use Pecee\SimpleRouter\SimpleRouter;
 
     $router = new SimpleRouter();
-    $router->setDefaultNamespace('Wjcrypto\Router');
+    $router->setDefaultNamespace('Wjcrypto');
 
-    $router->get('/', 'Web@home')->setName('home');
+    $router->get('/', 'Router\Web@home')->setName('home');
 
-    $router->get('/login', 'Web@login')->setName('login');
+    $router->get('/login', 'Router\Web@login')->setName('login');
 
-    $router->get('/cadastro', 'Web@signUp')->setName('signUp');
+    $router->get('/cadastro', 'Router\Web@signUp')->setName('signUp');
 
-    $router->get('/token', 'Web@token')->setName('token');
+    $router->get('/token', 'Token\Model\Token@generateToken')->setName('generateToken');
 
-    $router->get('/not-found', 'Web@notFound')->setName('notFound');
+    $router->get('/not-found', 'Router\Web@notFound')->setName('notFound');
 
     $router->error(function(Request $request, \Exception $exception) {
 

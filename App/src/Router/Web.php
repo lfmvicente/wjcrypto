@@ -4,9 +4,6 @@
 
     namespace Wjcrypto\Router;
 
-
-    use DI\Container;
-
     class Web
     {
         public function home()
@@ -16,18 +13,13 @@
 
         public function login()
         {
-            echo $_GET['username'].PHP_EOL;
+            echo $_GET['username'];
             echo $_GET['password'];
         }
 
         public function signUp()
         {
             echo "Cadastro Web";
-        }
-
-        public function token()
-        {
-            echo "Token";
         }
 
         public function notFound()
