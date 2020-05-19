@@ -25,3 +25,12 @@ CREATE TABLE `wjcrypto`.`holder` (
   `password` VARCHAR(255) NOT NULL,
   `account_number` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+
+  Table token
+
+  CREATE TABLE `wjcrypto`.`token` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `token` VARCHAR(64) NULL,
+    `expiration` DATETIME NULL,
+    PRIMARY KEY (`id`));
+

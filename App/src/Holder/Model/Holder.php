@@ -7,7 +7,8 @@
     use Wjcrypto\Account\Model\Account;
     use Wjcrypto\Holder\Exception\InvalidLoginException;
 
-    class Holder {
+    class Holder
+    {
 
         private $id;
         private $name;

@@ -18,6 +18,7 @@
     "ext-pdo": "*",
         "pecee/simple-router": "dev-master",
     "ext-json": "*",
-    "ext-openssl": "*"
+    "ext-openssl": "*",
+    "php-di/php-di": "~4.4 || ^5.0 || ^6.0.0"
   }
 }

@@ -452,11 +452,15 @@ class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
         'Symfony\\Polyfill\\Util\\TestListenerTrait' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListenerTrait.php',
         'Wjcrypto\\Account\\Model\\Account' => __DIR__ . '/../..' . '/App/src/Account/Model/Account.php',
         'Wjcrypto\\Account\\Model\\ResourceModel\\AccountResource' => __DIR__ . '/../..' . '/App/src/Account/Model/ResourceModel/AccountResource.php',
+        'Wjcrypto\\Holder\\Exception\\HolderNotFoundException' => __DIR__ . '/../..' . '/App/src/Holder/Exception/HolderNotFoundException.php',
         'Wjcrypto\\Holder\\Exception\\InvalidLoginException' => __DIR__ . '/../..' . '/App/src/Holder/Exception/InvalidLoginException.php',
         'Wjcrypto\\Holder\\Model\\Holder' => __DIR__ . '/../..' . '/App/src/Holder/Model/Holder.php',
         'Wjcrypto\\Holder\\Model\\ResourceModel\\HolderResource' => __DIR__ . '/../..' . '/App/src/Holder/Model/ResourceModel/HolderResource.php',
-        'Wjcrypto\\Login' => __DIR__ . '/../..' . '/App/src/Login.php',
+        'Wjcrypto\\Router\\Web' => __DIR__ . '/../..' . '/App/src/Router/Web.php',
         'Wjcrypto\\SqlDb\\Model\\ResourceModel\\Sql' => __DIR__ . '/../..' . '/App/src/SqlDb/Model/ResourceModel/Sql.php',
+        'Wjcrypto\\Token\\Exception\\UserNotAuthorizedException' => __DIR__ . '/../..' . '/App/src/Token/Exception/UserNotAuthorizedException.php',
+        'Wjcrypto\\Token\\Model\\ResourceModel\\TokenResource' => __DIR__ . '/../..' . '/App/src/Token/Model/ResourceModel/TokenResource.php',
+        'Wjcrypto\\Token\\Model\\Token' => __DIR__ . '/../..' . '/App/src/Token/Model/Token.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -7,10 +7,18 @@
     use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
     use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
+    use Wjcrypto\Validator\Model\Validator;
 
     $sql = new Sql();
     $holder = new Holder();
-    $holderRes = new HolderResource($sql, $holder);
+    $validator = new Validator($sql);
+
+    //$validator->userValidation('thaina', '112').PHP_EOL;
+    //var_dump($validator);
+    $validator->tokenValidation('50ae45b21f92ad84cee480fafd5259f3c5b4fd9f22339944b62c0b3fce1e753a');
+
+
+    /*$holderRes = new HolderResource($sql, $holder);
 
     $account = new Account();
     $accountRes = new AccountResource($sql, $account);
@@ -32,5 +40,5 @@
     $account->generateNumber();
     $account->setHolderId($holder);
 
-    $accountRes->insert($account);
+    $accountRes->insert($account);*/
 

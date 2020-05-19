@@ -1,9 +1,11 @@
 <?php
 
-declare(strict_types=1);
+    declare(strict_types=1);
 
-namespace Wjcrypto\Router;
+    namespace Wjcrypto\Router;
 
+
+    use DI\Container;
 
     class Web
     {
@@ -14,7 +16,8 @@ namespace Wjcrypto\Router;
 
         public function login()
         {
-            echo "Login Web";
+            echo $_GET['username'].PHP_EOL;
+            echo $_GET['password'];
         }
 
         public function signUp()
@@ -22,4 +25,16 @@ namespace Wjcrypto\Router;
             echo "Cadastro Web";
         }
 
+        public function token()
+        {
+            echo "Token";
+        }
+
+        public function notFound()
+        {
+            echo "Rota não encontrada";
+        }
+
+
     }
+

@@ -5,6 +5,7 @@
     namespace Wjcrypto\Holder\Model\ResourceModel;
 
     use Wjcrypto\Account\Model\Account;
+    use Wjcrypto\Holder\Exception\HolderNotFoundException;
     use Wjcrypto\Holder\Exception\InvalidLoginException;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Holder\Model\Holder;
@@ -31,7 +32,6 @@
 
             if (count($results) > 0) {
                 $row = $results[0];
-
                 $this->holder->setId($row['id']);
                 $this->holder->setName($row['name']);
                 $this->holder->setDocument($row['document']);
@@ -42,14 +42,14 @@
                 $this->holder->setUsername($row['username']);
                 $this->holder->setPassword($row['password']);
                 $this->holder->setAccountNumber($row['account_number']);
+                return $this->holder;
             }
-            return $this->holder;
+            throw new HolderNotFoundException("Usuário não existe");
         }
 
         public function login($username, $password)
         {
             $crypt = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
-
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
                  array(
@@ -129,11 +129,6 @@
                 "password"=>$holder->getPassword()
             ));
             return $this;
-        }
-
-        public function createAccount(Account $account)
-        {
-
         }
     }
 
