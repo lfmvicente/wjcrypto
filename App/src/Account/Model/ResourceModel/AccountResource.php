@@ -56,15 +56,6 @@
             return $this;
         }
 
-        public function update(Account $account)
-        {
-            $results = $this->sql->query(
-                "UPDATE account SET account_number = :NUMBER WHERE id = :ID", array(
-                ":ID"=>$account->getId(),
-                ":NUMBER"=>$account->getNumber()
-            ));
-        }
-
         public function linkHolder(Account $account, Holder $holder)
         {
             $idHolder = $holder->getId();
@@ -78,4 +69,3 @@
             ));
         }
     }
-

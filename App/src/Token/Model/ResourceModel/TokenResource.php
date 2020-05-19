@@ -32,12 +32,26 @@
             return $this;
         }
 
-        public function delete($token)
+        public function delete(Token $token)
         {
             $result = $this->sql->query("DELETE FROM token WHERE token = :token", array(
-                "token"=>$token
+                "token"=>$token->getToken()
             ));
             return $this;
+        }
+
+        public function tokenValidation(Token $token)
+        {
+            $results = $this->sql->select(
+                "SELECT expiration FROM token WHERE token = :token",
+                array(
+                    ":token"=>$token->getToken()
+                )
+            );
+            if (count($results) > 0 && $results[0]['expiration'] >= date ('Y-m-d H:i:s')) {
+                return true;
+            }
+            return false;
         }
     }
 
