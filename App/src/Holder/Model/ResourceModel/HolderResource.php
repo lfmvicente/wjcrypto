@@ -153,5 +153,11 @@
             ]);
             return (count($result) > 0);
         }
+
+        public function getAll()
+        {
+            $results = $this->sql->select("SELECT * FROM holder");
+            return $results;
+        }
     }
 

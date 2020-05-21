@@ -57,32 +57,6 @@
         public function setHolderId($holder)
         {
             $this->holder = $holder;
-        }        
-
-        public function deposit($amount)
-        {
-            if ($amount > 0) {
-               return $this->balance += $amount;
-            }
-            return "Quantia Inválida";
-        }
-
-        public function withdraw($amount)
-        {
-            if ($amount < $this->balance) {
-                return $this->balance -= $amount;
-            }
-            return "Sem Saldo";
-        }
-
-        public function transfer($amount, $account)
-        {
-            if ($amount > 0) {
-                $this->balance -= $amount;
-                $account->deposit($amount);
-                return $this;
-            }
-            return "Valor inválido";
         }
 
         public function __toString()

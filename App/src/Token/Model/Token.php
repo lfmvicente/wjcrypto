@@ -42,17 +42,6 @@
             $this->expiration = $expiration;
         }
 
-        public function generateToken($result)
-        {
-            if ($result === true) {
-                $bytes = random_bytes(64);
-                $token = hash('sha256', $bytes);
-                $this->setToken($token);
-                return $this;
-            }
-            throw new UserNotAuthorizedException("Usuário não autorizado");
-        }
-
         public function __toString()
         {
             return json_encode(array(

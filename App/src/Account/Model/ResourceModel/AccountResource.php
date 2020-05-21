@@ -4,6 +4,9 @@
 
     namespace Wjcrypto\Account\Model\ResourceModel;
 
+    use Wjcrypto\Account\Exception\InvalidAmountException;
+    use Wjcrypto\Account\Exception\NoFundsException;
+    use Wjcrypto\Account\Exception\NotFoundAccountException;
     use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Account\Model\Account;
@@ -65,7 +68,7 @@
             return $this;
         }
 
-        public function linkHolder(Account $account, Holder $holder)
+        public function linkHolder(Holder $holder)
         {
             $idHolder = $holder->getId();
             $this->account->setHolderId($idHolder);
@@ -76,5 +79,62 @@
                 ":ID"=>$id,
                 ":idHolder"=>$idHolder
             ));
+        }
+
+        public function deposit($amount, $accountNumber)
+        {
+            $results = $this->sql->select("SELECT balance, account_number FROM account WHERE account_number = :ACCOUNT",
+                ["ACCOUNT"=>$accountNumber]);
+
+            if ($amount <= 0) {
+                throw new InvalidAmountException('Invalid Amount');
+            }
+
+            $results[0]['balance'] += $amount;
+
+            $update = $this->sql->query("UPDATE account SET balance = :BALANCE WHERE account_number = :ACCOUNT",
+            [
+              "BALANCE"=>$results[0]['balance'],
+              "ACCOUNT"=>$accountNumber
+            ]);
+            return $this;
+        }
+
+        public function withdraw($amount, $accountNumber)
+        {
+            $results = $this->sql->select("SELECT balance, account_number FROM account WHERE account_number = :ACCOUNT",
+                ["ACCOUNT"=>$accountNumber]);
+
+            if ($amount > $results[0]['balance'] || $amount <= 0) {
+                throw new InvalidAmountException('Invalid Amount');
+            }
+            if ($results[0]['balance'] <= 0) {
+                throw new NoFundsException('No Funds');
+            }
+
+            $results[0]['balance'] -= $amount;
+
+            $update = $this->sql->query("UPDATE account SET balance = :BALANCE WHERE account_number = :ACCOUNT",
+            [
+               "BALANCE"=>$results[0]['balance'],
+               "ACCOUNT"=>$accountNumber
+            ]);
+            return $this;
+        }
+
+        public function transfer($amount, $account)
+        {
+            if ($amount > 0) {
+                $this->balance -= $amount;
+                $account->deposit($amount);
+                return $this;
+            }
+            return "Valor inválido";
+        }
+
+        public function getAll()
+        {
+            $results = $this->sql->select("SELECT * FROM account");
+            return $results;
         }
     }

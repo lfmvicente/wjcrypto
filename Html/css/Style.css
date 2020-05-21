@@ -71,7 +71,6 @@ div {
 
 div label {
     margin-right: 10px;
-    display: right;
 }
 
 .label {
@@ -113,7 +112,14 @@ div label {
     border-bottom:3px solid #054f77;
 }
 
-#cadastro {
-
+#user {
+    text-align: center;
 }
 
+#cadastro {
+    text-align: left;
+}
+
+#signup {
+    text-align: left;
+}

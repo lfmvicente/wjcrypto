@@ -114,7 +114,7 @@
 
         public function getAccountNumber()
         {
-            return $this->account->getNumber();
+            return $this->account;
         }
 
         public function setAccountNumber($account)

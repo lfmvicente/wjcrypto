@@ -9,11 +9,17 @@
     <div id="banner">
         <img src=images/wjcrypto_logo.png></img>
     </div>
+    <div id="user">
+    <?php
+    session_start();
+    echo 'Olá ' . $_SESSION['name'];
+    ?>
+    </div>
     <nav id="menu">
     <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Depositar</a></li>
-        <li><a href="#">Sacar</a></li>
+        <li><a href="deposit.php">Depositar</a></li>
+        <li><a href="withdraw.php">Sacar</a></li>
         <li><a href="#">Transferir</a></li>
         <li><a href="../logout.php">Sair</a></li>
     </ul>
