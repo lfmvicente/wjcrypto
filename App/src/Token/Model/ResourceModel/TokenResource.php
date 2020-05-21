@@ -1,57 +1,49 @@
 <?php
 
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    namespace Wjcrypto\Token\Model\ResourceModel;
+namespace Wjcrypto\Token\Model\ResourceModel;
 
-    use Wjcrypto\Token\Model\Token;
-    use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
+use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
+use Wjcrypto\Token\Exception\NoSuchEntityException;
+use Wjcrypto\Token\Exception\InvalidTokenException;
 
-    class TokenResource
+class TokenResource
+{
+
+    private $sql;
+
+    public function __construct(Sql $sql)
     {
-        private $token;
-        private $sql;
-
-        public function __construct(Sql $sql, Token $token)
-        {
-            $this->sql = $sql;
-            $this->token = $token;
-        }
-
-        public function save(Token $token)
-        {
-            $today = date( 'd-m-Y H:i:s');
-            $expiration = new \DateTime($today);
-            $expiration->add(new \DateInterval('PT04H'));
-
-            $results = $this->sql->query(
-                "INSERT INTO token (token, expiration) VALUES (:token, :expiration)", array(
-                    "token"=>$token->getToken(),
-                    "expiration"=>$expiration->format('Y-m-d H:i:s')
-            ));
-            return $this;
-        }
-
-        public function delete(Token $token)
-        {
-            $result = $this->sql->query("DELETE FROM token WHERE token = :token", array(
-                "token"=>$token->getToken()
-            ));
-            return $this;
-        }
-
-        public function tokenValidation(Token $token)
-        {
-            $results = $this->sql->select(
-                "SELECT expiration FROM token WHERE token = :token",
-                array(
-                    ":token"=>$token->getToken()
-                )
-            );
-            if (count($results) > 0 && $results[0]['expiration'] >= date ('Y-m-d H:i:s')) {
-                return true;
-            }
-            return false;
-        }
+        $this->sql = $sql;
     }
 
+    public function createToken()
+    {
+        $token = uniqid('WJ-');
+
+        $this->sql->query('INSERT INTO token (token, expiration) VALUES (:TOKEN, :DT)', [
+            ':TOKEN' => $token,
+            ':DT' => date("Y-m-d", strtotime("+5 days"))
+        ]);
+        return $token;
+    }
+
+    public function validateToken(string $token)
+    {
+        $tokenData = $this->sql->select('SELECT * FROM token WHERE token = :TOKEN', [
+            ':TOKEN' => $token
+        ]);
+
+        if (count($tokenData) === 0) {
+            throw new NoSuchEntityException("Could Not Find Token: $token");
+        }
+
+        $actualDate = new \DateTime();
+        $tokenDate = new \DateTime($tokenData[0]['expiration']);
+
+        if ($actualDate == $tokenDate || $actualDate > $tokenDate) {
+            throw new InvalidTokenException('Your token has been expired');
+        }
+    }
+}

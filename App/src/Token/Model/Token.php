@@ -44,7 +44,7 @@
 
         public function generateToken($result)
         {
-            if ($result == true) {
+            if ($result === true) {
                 $bytes = random_bytes(64);
                 $token = hash('sha256', $bytes);
                 $this->setToken($token);

@@ -17,8 +17,8 @@
     $holderRes->login($username, $password);
 
     if (isset($holderRes)) {
-        echo "passou";
+        return json_encode(array('status' => 'Sucesso', 'dados' => 'Usuário Válido'));
     }else{
-        echo "errado";
+        return json_encode(array('status' => 'Erro', 'dados' => 'Usuário Inválido'));
     }
     

@@ -5,7 +5,6 @@ require_once "vendor/autoload.php";
 use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
 use Wjcrypto\Token\Model\ResourceModel\TokenResource;
 use Wjcrypto\Token\Model\Token;
-use Wjcrypto\Validator\Model\Validator;
 
 $sql = new Sql();
 $token = new Token();

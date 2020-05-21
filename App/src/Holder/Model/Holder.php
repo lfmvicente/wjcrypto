@@ -120,7 +120,23 @@
         public function setAccountNumber($account)
         {
             $this->account = $account;
-        }    
+        }
+
+        public function getData()
+        {
+            return [
+                "id"=>$this->getId(),
+                "name"=>$this->getName(),
+                "document"=>$this->getDocument(),
+                "additional_document"=>$this->getAdditionalDocument(),
+                "dt_origin"=>$this->getDtOrigin(),
+                "phone"=>$this->getPhone(),
+                "address"=>$this->getAddress(),
+                "username"=>$this->getUsername(),
+                "password"=>$this->getPassword(),
+                "account_number"=>$this->getAccountNumber()
+            ];
+        }
 
         public function __toString()
         {

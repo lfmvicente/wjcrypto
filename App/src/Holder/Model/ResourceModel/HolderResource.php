@@ -17,6 +17,7 @@
     {
         private $sql;
         private $holder;
+        private const QUERY = 'SELECT username, password FROM holder WHERE username = :USERNAME AND password = :PASSWORD';
 
         public function __construct(Sql $sql, Holder $holder)
         {
@@ -49,12 +50,12 @@
 
         public function login($username, $password)
         {
-            $crypt = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
+            $crypto = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
                  array(
                     ":USERNAME"=>$username,
-                    ":PASSWORD"=>$crypt
+                    ":PASSWORD"=>$crypto
                 )
             );
 
@@ -94,7 +95,7 @@
                     "password"=>$holder->getPassword(),
                     "account_number"=>$holder->getAccountNumber()
             ));
-            return $this;
+            return $this->holder;
         }
 
         public function delete($id)
@@ -128,9 +129,9 @@
                 "username"=>$holder->getUsername(),
                 "password"=>$holder->getPassword()
             ));
-            return $this;
+            return $this->holder;
         }
-        public function linkHolder(Account $account, Holder $holder)
+        public function linkAccount(Account $account, Holder $holder)
         {
             $accountNumber = $account->getNumber();
             $this->holder->setAccountNumber($accountNumber);
@@ -141,6 +142,16 @@
                 ":ID"=>$id,
                 ":number"=>$accountNumber
             ));
+        }
+
+        public function isAuthenticated(string $username, string $password): bool
+        {
+            $crypto = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
+            $result = $this->sql->select(self::QUERY,[
+                ':USERNAME' => $username,
+                ':PASSWORD' => $crypto
+            ]);
+            return (count($result) > 0);
         }
     }
 

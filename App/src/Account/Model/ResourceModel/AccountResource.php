@@ -49,6 +49,15 @@
             return $this;
         }
 
+        public function update(Account $account)
+        {
+            $results = $this->sql->query(
+                "UPDATE account SET account_number = :NUMBER WHERE id = :ID", array(
+                ":ID"=>$account->getId(),
+                ":NUMBER"=>$account->getNumber()
+            ));
+        }
+
         public function delete($id)
         {
             $results = $this->sql->query("DELETE FROM account WHERE id = :ID",

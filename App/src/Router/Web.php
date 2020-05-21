@@ -8,18 +8,22 @@
     {
         public function home()
         {
-            echo "Home Web";
+            echo "Home web";
         }
 
         public function login()
         {
-            echo $_GET['username'];
-            echo $_GET['password'];
+            echo "Login Web";
         }
 
-        public function signUp()
+        public function holder()
         {
-            echo "Cadastro Web";
+            echo "Cadastro Holder";
+        }
+
+        public function account()
+        {
+            echo "Cadastro Conta";
         }
 
         public function notFound()

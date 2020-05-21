@@ -2,30 +2,47 @@
 
     require_once "vendor/autoload.php";
 
-    use Pecee\Http\Request;
-    use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
+    session_start();
+
+    use DI\ContainerBuilder;
     use Pecee\SimpleRouter\SimpleRouter;
+    use Wjcrypto\Token\Controller\CreateToken;
+    use Wjcrypto\Token\Controller\Testando;
+    use Wjcrypto\Account\Controller\Home;
+    use Wjcrypto\Account\Controller\Login;
+
+    $container = (new ContainerBuilder())
+        ->useAutowiring(true)
+        ->build();
 
     $router = new SimpleRouter();
-    $router->setDefaultNamespace('Wjcrypto');
 
-    $router->get('/', 'Router\Web@home')->setName('home');
+    $router::enableDependencyInjection($container);
 
-    $router->get('/login', 'Router\Web@login')->setName('login');
+    $router->post('/token', function() use($router, $container) {
+        $tokenController = $container->make(CreateToken::class);
+        $tokenController->execute($router);
+    });
 
-    $router->get('/cadastro', 'Router\Web@signUp')->setName('signUp');
+    $router->get('/holders', function() use($router, $container) {
+        $testandoController = $container->make(Testando::class);
+        $testandoController->execute($router);
+    });
 
-    $router->get('/token', 'Token\Model\Token@generateToken')->setName('generateToken');
+    $router->post('/login', function() use($router, $container) {
+       $loginController = $container->make(Login::class);
+       $loginController->execute($router);
+    });
 
-    $router->get('/not-found', 'Router\Web@notFound')->setName('notFound');
+    $router->get('/home', function() use($router, $container) {
+        $homeController = $container->make(Home::class);
+        $homeController->execute($router);
+    });
 
-    $router->error(function(Request $request, \Exception $exception) {
-
-        if($exception instanceof NotFoundHttpException && $exception->getCode() === 404) {
-            response()->redirect('/not-found');
-    }
-
-});
+    $router->get('/jquery/ajax/example', function() use($router, $container) {
+        $router::response()->json([
+            'username'=>$_SESSION['username']
+        ]);
+    });
 
     $router->start();
-
