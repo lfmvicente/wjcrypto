@@ -32,7 +32,6 @@ form {
 
 div {
     padding: 5px;
-    display: center;
 }
 
 .button{
@@ -71,7 +70,8 @@ div {
 
 
 .label {
-    width:80px;
+    width:100px;
+    display: inline;
 }
 
 #banner {

@@ -12,11 +12,6 @@ session_start()
 <div id="banner">
     <img src=images/wjcrypto_logo.png></img>
 </div>
-<div id="user">
-    <?php
-    echo 'Olá ' . $_SESSION['name'];
-    ?>
-</div>
 <nav id="menu">
     <ul>
         <li><a href="home.php">Home</a></li>
@@ -28,8 +23,8 @@ session_start()
 </nav>
 <main>
     <form action="/withdraw" method="post">
+        <label for="withdraw" class="label">Valor a Sacar:</label>
         <div>
-            <label for="withdraw" class="label">Valor a Sacar:</label>
             <input type="text" name="amount" />
             <p>
                 <input type="submit" value="Sacar"/>

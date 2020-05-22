@@ -85,6 +85,7 @@
               "BALANCE"=>$results[0]['balance'],
               "ACCOUNT"=>$accountNumber
             ]);
+            $_SESSION['balance'] = $results[0]['balance'];
             return $this;
         }
 
@@ -107,6 +108,7 @@
                "BALANCE"=>$results[0]['balance'],
                "ACCOUNT"=>$accountNumber
             ]);
+            $_SESSION['balance'] = $results[0]['balance'];
             return $this;
         }
 
@@ -135,6 +137,7 @@
                     "BALANCE"=>$results[0]['balance'],
                     "DESTINATION"=>$results[0]['account_number']
                 ]);
+            $_SESSION['balance'] = $results[1]['balance'];
             return $this;
         }
 

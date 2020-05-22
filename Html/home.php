@@ -19,10 +19,12 @@
     </ul>
 </nav>
     <div id="user">
+        <h2>
         <?php
         session_start();
         echo 'Olá ' . $_SESSION['name'] . ', Seu Saldo atual é de R$ ' . $_SESSION['balance'] ;
         ?>
+        </h2>
     </div>
 </body>
 </html>
