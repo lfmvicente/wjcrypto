@@ -17,6 +17,6 @@ class TransferControllerHandler
 
     public function execute(array $params, $session)
     {
-        return $this->accountResource->transfer($params['amount'], $params['account'], $session['account_number']);
+        $this->accountResource->transfer($params['amount'], $params['account'], $session['account_number']);
     }
 }

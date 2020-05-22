@@ -69,12 +69,9 @@ div {
 
 .button_sign:hover {opacity: 0.6}
 
-div label {
-    margin-right: 10px;
-}
 
 .label {
-    padding-right: 20px;  
+    width:80px;
 }
 
 #banner {

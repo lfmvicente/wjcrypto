@@ -131,18 +131,6 @@
             ));
             return $this->holder;
         }
-        public function linkAccount(Account $account, Holder $holder)
-        {
-            $accountNumber = $account->getNumber();
-            $this->holder->setAccountNumber($accountNumber);
-            $id = $this->holder->getId();
-
-            $results = $this->sql->query(
-                "UPDATE holder SET account_number = :number WHERE id = :ID", array(
-                ":ID"=>$id,
-                ":number"=>$accountNumber
-            ));
-        }
 
         public function isAuthenticated(string $username, string $password): bool
         {
@@ -158,6 +146,38 @@
         {
             $results = $this->sql->select("SELECT * FROM holder");
             return $results;
+        }
+
+        public function create(array $params)
+        {
+            $crypto = openssl_encrypt($params['password'],'AES-128-CBC','SECRET', 0, 'SECRET_IV');
+            $results = $this->sql->query(
+                "INSERT INTO holder 
+                (name, document, additional_document, dt_origin, phone, 
+                address, username, password, account_number)
+                VALUES (:name, :document, :additional_document, :dtorigin, 
+                :phone, :address, :username, :password, :account_number)", array(
+                "name"=>$params['name'],
+                "document"=>$params['document'],
+                "additional_document"=>$params['additional_document'],
+                "dtorigin"=>$params['dt_origin'],
+                "phone"=>$params['phone'],
+                "address"=>$params['address'],
+                "username"=>$params['username'],
+                "password"=>$crypto,
+                "account_number"=>uniqid()
+            ));
+            return $results;
+        }
+
+        public function getBalance($account)
+        {
+            $balance = $this->sql->select(
+                "SELECT balance, account_number FROM account WHERE account_number = :ACCOUNT",
+            [
+               "ACCOUNT"=>$account['account_number']
+            ]);
+            return $balance[0]['balance'];
         }
     }
 

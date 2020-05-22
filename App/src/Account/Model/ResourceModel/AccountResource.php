@@ -69,19 +69,6 @@
             return $this;
         }
 
-        public function linkHolder(Holder $holder)
-        {
-            $idHolder = $holder->getId();
-            $this->account->setHolderId($idHolder);
-            $id = $this->account->getId();
-
-            $results = $this->sql->query(
-                "UPDATE account SET id_holder = :idHolder WHERE id = :ID", array(
-                ":ID"=>$id,
-                ":idHolder"=>$idHolder
-            ));
-        }
-
         public function deposit($amount, $accountNumber)
         {
             $results = $this->sql->select("SELECT balance, account_number FROM account WHERE account_number = :ACCOUNT",

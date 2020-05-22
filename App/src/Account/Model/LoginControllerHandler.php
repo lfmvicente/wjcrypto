@@ -22,5 +22,6 @@ class LoginControllerHandler
     {
         $holder = $this->holderResource->login($params['username'], $params['password']);
         $_SESSION = $holder->getData();
+        $_SESSION['balance'] = $this->holderResource->getBalance($_SESSION);
     }
 }

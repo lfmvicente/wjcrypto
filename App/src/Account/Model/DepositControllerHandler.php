@@ -17,6 +17,6 @@ class DepositControllerHandler
 
     public function execute(array $params, $session)
     {
-        return $account = $this->accountResource->deposit($params['amount'], $session['account_number']);
+        $this->accountResource->deposit($params['amount'], $session['account_number']);
     }
 }

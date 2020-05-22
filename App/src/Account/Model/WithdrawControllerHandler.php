@@ -17,6 +17,6 @@ class WithdrawControllerHandler
 
     public function execute(array $params, $session)
     {
-        return $account = $this->accountResource->withdraw($params['amount'], $session['account_number']);
+        $this->accountResource->withdraw($params['amount'], $session['account_number']);
     }
 }

@@ -9,21 +9,21 @@
     <div id="banner">
         <img src=images/wjcrypto_logo.png></img>
     </div>
-    <div id="user">
-    <?php
-    session_start();
-    echo 'Olá ' . $_SESSION['name'];
-    ?>
-    </div>
     <nav id="menu">
     <ul>
         <li><a href="home.php">Home</a></li>
         <li><a href="deposit.php">Depositar</a></li>
         <li><a href="withdraw.php">Sacar</a></li>
         <li><a href="transfer.php">Transferir</a></li>
-        <li><a href="../logout.php">Sair</a></li>
+        <li><a href="/logout">Sair</a></li>
     </ul>
 </nav>
+    <div id="user">
+        <?php
+        session_start();
+        echo 'Olá ' . $_SESSION['name'] . ', Seu Saldo atual é de R$ ' . $_SESSION['balance'] ;
+        ?>
+    </div>
 </body>
 </html>
  
