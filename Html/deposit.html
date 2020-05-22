@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -15,22 +12,32 @@ session_start();
 <nav id="menu">
     <ul>
         <li><a href="home.php">Home</a></li>
-        <li><a href="deposit.php">Depositar</a></li>
-        <li><a href="withdraw.php">Sacar</a></li>
-        <li><a href="transfer.php">Transferir</a></li>
+        <li><a href="deposit.html">Depositar</a></li>
+        <li><a href="withdraw.html">Sacar</a></li>
+        <li><a href="transfer.html">Transferir</a></li>
         <li><a href="/logout">Sair</a></li>
     </ul>
 </nav>
+<script>
+    $(document).on('click', '.deposit', function () {
+        $.ajax({
+            url: "/deposit",
+            type: 'POST',
+            showLoader: true,
+            data: {
+                'amount': $('input[name="amount"]')[0].value
+            }
+        });
+    });
+</script>
 <main>
-    <form action="/deposit" method="post">
         <label for="Deposit" class="label">Valor a Depositar:</label>
         <div>
             <input type="text" name="amount" />
             <p>
-                <input type="submit" value="Depositar"/>
+                <button class="deposit">Depositar</button>
             </p>
         </div>
-    </form>
 </main>
 </body>
 </html>

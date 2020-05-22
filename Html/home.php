@@ -12,18 +12,18 @@
     <nav id="menu">
     <ul>
         <li><a href="home.php">Home</a></li>
-        <li><a href="deposit.php">Depositar</a></li>
-        <li><a href="withdraw.php">Sacar</a></li>
-        <li><a href="transfer.php">Transferir</a></li>
+        <li><a href="deposit.html">Depositar</a></li>
+        <li><a href="withdraw.html">Sacar</a></li>
+        <li><a href="transfer.html">Transferir</a></li>
         <li><a href="/logout">Sair</a></li>
     </ul>
 </nav>
     <div id="user">
         <h2>
-        <?php
-        session_start();
-        echo 'Olá ' . $_SESSION['name'] . ', Seu Saldo atual é de R$ ' . $_SESSION['balance'] ;
-        ?>
+            <?php
+                session_start();
+                echo 'Olá ' . $_SESSION['name'] . ', Seu Saldo atual é de R$ ' . $_SESSION['balance']
+             ?>
         </h2>
     </div>
 </body>

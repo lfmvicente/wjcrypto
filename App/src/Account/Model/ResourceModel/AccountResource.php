@@ -43,7 +43,7 @@
 
         public function insert(Account $account)
         {
-            $results = $this->sql->query(
+            $this->sql->query(
                 "INSERT INTO account (account_number, balance, id_holder)
                     VALUES (:number, :balance, :id_holder)", array(
                         "number"=>uniqid(),
@@ -55,7 +55,7 @@
 
         public function update(Account $account)
         {
-            $results = $this->sql->query(
+            $this->sql->query(
                 "UPDATE account SET account_number = :NUMBER WHERE id = :ID", array(
                 ":ID"=>$account->getId(),
                 ":NUMBER"=>$account->getNumber()
@@ -64,7 +64,7 @@
 
         public function delete($id)
         {
-            $results = $this->sql->query("DELETE FROM account WHERE id = :ID",
+            $this->sql->query("DELETE FROM account WHERE id = :ID",
                 array("ID"=>$id));
             return $this;
         }
@@ -80,7 +80,7 @@
 
             $results[0]['balance'] += $amount;
 
-            $update = $this->sql->query("UPDATE account SET balance = :BALANCE WHERE account_number = :ACCOUNT",
+            $this->sql->query("UPDATE account SET balance = :BALANCE WHERE account_number = :ACCOUNT",
             [
               "BALANCE"=>$results[0]['balance'],
               "ACCOUNT"=>$accountNumber
@@ -124,14 +124,14 @@
             $results[0]['balance'] += $amount;
             $results[1]['balance'] -= $amount;
 
-            $updateOrigin = $this->sql->query(
+            $this->sql->query(
                 "UPDATE account SET balance = :BALANCE WHERE account_number = :ORIGIN",
             [
                 "BALANCE"=>$results[1]['balance'],
                 "ORIGIN"=>$results[1]['account_number']
             ]);
 
-            $updateDestination = $this->sql->query(
+            $this->sql->query(
                 "UPDATE account SET balance = :BALANCE WHERE account_number = :DESTINATION",
                 [
                     "BALANCE"=>$results[0]['balance'],
