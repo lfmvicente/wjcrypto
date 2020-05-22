@@ -93,7 +93,7 @@
                     "address"=>$holder->getAddress(),
                     "username"=>$holder->getUsername(),
                     "password"=>$holder->getPassword(),
-                    "account_number"=>$holder->getAccountNumber()
+                    "account_number"=>uniqid()
             ));
             return $this->holder;
         }

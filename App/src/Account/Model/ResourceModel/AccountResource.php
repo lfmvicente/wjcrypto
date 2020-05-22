@@ -5,6 +5,7 @@
     namespace Wjcrypto\Account\Model\ResourceModel;
 
     use Wjcrypto\Account\Exception\InvalidAmountException;
+    use Wjcrypto\Account\Exception\InvalidTransferException;
     use Wjcrypto\Account\Exception\NoFundsException;
     use Wjcrypto\Account\Exception\NotFoundAccountException;
     use Wjcrypto\Holder\Model\Holder;
@@ -122,14 +123,32 @@
             return $this;
         }
 
-        public function transfer($amount, $account)
+        public function transfer($amount, $accountDestination, $accountOrigin)
         {
-            if ($amount > 0) {
-                $this->balance -= $amount;
-                $account->deposit($amount);
-                return $this;
-            }
-            return "Valor inválido";
+            $results = $this->sql->select(
+                "SELECT balance, account_number FROM account WHERE account_number in (:ORIGIN, :DESTINATION)",
+                [
+                    "ORIGIN"=>$accountOrigin,
+                    "DESTINATION"=>$accountDestination
+                ]);
+
+            $results[0]['balance'] += $amount;
+            $results[1]['balance'] -= $amount;
+
+            $updateOrigin = $this->sql->query(
+                "UPDATE account SET balance = :BALANCE WHERE account_number = :ORIGIN",
+            [
+                "BALANCE"=>$results[1]['balance'],
+                "ORIGIN"=>$results[1]['account_number']
+            ]);
+
+            $updateDestination = $this->sql->query(
+                "UPDATE account SET balance = :BALANCE WHERE account_number = :DESTINATION",
+                [
+                    "BALANCE"=>$results[0]['balance'],
+                    "DESTINATION"=>$results[0]['account_number']
+                ]);
+            return $this;
         }
 
         public function getAll()

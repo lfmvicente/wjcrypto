@@ -7,6 +7,7 @@
     use DI\ContainerBuilder;
     use Pecee\SimpleRouter\SimpleRouter;
     use Wjcrypto\Account\Controller\AccountController;
+    use Wjcrypto\Account\Controller\Transfer;
     use Wjcrypto\Account\Controller\Withdraw;
     use Wjcrypto\Token\Controller\CreateToken;
     use Wjcrypto\Account\Controller\Home;
@@ -59,6 +60,11 @@
     $router->post('/withdraw', function() use($router, $container) {
        $withdrawController = $container->make(Withdraw::class);
        $withdrawController->execute($router);
+    });
+
+    $router->post('/transfer', function() use($router, $container) {
+        $transferController = $container->make(Transfer::class);
+        $transferController->execute($router);
     });
 
     $router->get('/jquery/ajax/example', function() use($router, $container) {

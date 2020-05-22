@@ -17,10 +17,10 @@
     </div>
     <nav id="menu">
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="home.php">Home</a></li>
         <li><a href="deposit.php">Depositar</a></li>
         <li><a href="withdraw.php">Sacar</a></li>
-        <li><a href="#">Transferir</a></li>
+        <li><a href="transfer.php">Transferir</a></li>
         <li><a href="../logout.php">Sair</a></li>
     </ul>
 </nav>

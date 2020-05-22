@@ -1,9 +1,9 @@
-<?php session_start()?>
+<?php session_start() ?>
 <html>
 <head>
     <meta charset="UTF-8"/>
     <link href="css/Style.css" rel="stylesheet" media="all" />
-    <title>WJCrypto - Depositar</title>
+    <title>WJCrypto - Sacar</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -25,12 +25,18 @@
     </ul>
 </nav>
 <main>
-    <form action="/deposit" method="post">
+    <form action="/transfer" method="post">
         <div>
-            <label for="Deposit" class="label">Valor Depósito:</label>
+            <label for="amount" class="label">Valor para Transferir:</label>
             <input type="text" name="amount" />
+        </div>
+        <div>
+            <label for="account" class="label">Conta Destino:</label>
+            <input type="text" name="account" />
+        </div>
+        <div>
             <p>
-                <input type="submit" value="Depositar"/>
+                <input type="submit" value="Transferir"/>
             </p>
         </div>
 </main>
