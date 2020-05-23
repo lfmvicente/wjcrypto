@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="css/Style.css" rel="stylesheet" media="all" />
+    <title>WJCrypto - Transferencia</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="banner">
+    <img src=images/wjcrypto_logo.png></img>
+</div>
+<nav id="menu">
+    <ul>
+        <li><a href="home.php">Home</a></li>
+        <li><a href="deposit.html">Depositar</a></li>
+        <li><a href="withdraw.html">Sacar</a></li>
+        <li><a href="transfer.html">Transferir</a></li>
+        <li><a href="/logout">Sair</a></li>
+    </ul>
+</nav>
+<script>
+    $(document).on('click', '.transfer', function () {
+        $.ajax({
+            url: "/transfer",
+            type: 'POST',
+            showLoader: true,
+            data: {
+                'amount': $('input[name="amount"]')[0].value,
+                'account': $('input[name="account"]')[0].value
+            }
+        });
+    });
+</script>
+<main>
+        <label for="amount" class="label">Valor para Transferir:</label>
+        <div>
+            <input type="text" name="amount" />
+        </div>
+        <label for="account" class="label">Conta Destino:</label>
+        <div>
+            <input type="text" name="account" />
+            <p>
+                <button class="transfer">Transferir</button>
+            </p>
+        </div>
+</main>
+</body>
+</html>

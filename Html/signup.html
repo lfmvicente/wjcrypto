@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link href="css/Style.css" rel="stylesheet" media="all" />
+    <title>WJCrypto - Cadastro</title>
+</head>
+<body>
+<script>
+    $(document).on('click', '.signup', function () {
+        $.ajax({
+            url: "/signup",
+            type: 'POST',
+            showLoader: true,
+            data: {
+                'name': $('input[name="name"]')[0].value,
+                'document': $('input[name="document"]')[0].value,
+                'additional_document': $('input[name="additional_document"]')[0].value,
+                'dt_origin': $('input[name="dt_origin"]')[0].value,
+                'phone': $('input[name="phone"]')[0].value,
+                'address': $('input[name="address"]')[0].value,
+                'username': $('input[name="username"]')[0].value,
+                'password': $('input[name="password"]')[0].value
+            }
+        });
+    });
+</script>
+<div id="cadastro">
+        <p>
+            <label>Nome:</label>
+            <input name="name" required="required" type="text" placeholder="" />
+        </p>
+        <p>
+            <label>Documento:</label>
+            <input name="document" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Documento Adicional:</label>
+            <input name="additional_document" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Data de origem:</label>
+            <input name="dt_origin" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Telefone:</label>
+            <input name="phone" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Endereço:</label>
+            <input name="address" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Usuário:</label>
+            <input name="username" required="required" type="text" placeholder=""/>
+        </p>
+        <p>
+            <label>Senha:</label>
+            <input name="password" required="required" type="password" placeholder=""/>
+        </p>
+        <p>
+            <button class="signup">Cadastrar</button>
+        </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Wjcrypto\Account\Api;
+
+use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+
+abstract class AccountSessionControllerValidation
+{
+    private $holderResource;
+
+    public function __construct(HolderResource $holderResource)
+    {
+        $this->holderResource = $holderResource;
+    }
+
+    public function validateUserLogin()
+    {
+        if (isset($_SESSION) &&
+            isset($_SESSION['id']) &&
+            isset($_SESSION['username']) &&
+            isset($_SESSION['password'])) {
+
+            $holder = $this->holderResource->getById($_SESSION['id']);
+
+            if ($holder->getPassword() === $_SESSION['password'] && $holder->getUsername() === $_SESSION['username']) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
