@@ -17,6 +17,7 @@
     use Wjcrypto\Account\Controller\Login;
     use Wjcrypto\Account\Controller\Deposit;
     use Wjcrypto\Holder\Controller\HolderController;
+    use Wjcrypto\Account\Controller\Welcome;
 
     $container = (new ContainerBuilder())
         ->useAutowiring(true)
@@ -81,10 +82,9 @@
         $logoutController->execute($router);
     });
 
-    $router->get('/jquery/ajax/example', function() use($router, $container) {
-        $router::response()->json([
-            'username'=>$_SESSION['username']
-        ]);
+    $router->get('/welcome', function() use($router, $container) {
+        $welcomeController = $container->make(Welcome::class);
+        $welcomeController->execute($router);
     });
 
     $router->start();

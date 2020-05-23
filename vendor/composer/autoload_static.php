@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
+class ComposerStaticInitd805106827aa2f760fccec1ab8df20dd
 {
     public static $files = array (
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
@@ -458,6 +458,7 @@ class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
         'Wjcrypto\\Account\\Controller\\Login' => __DIR__ . '/../..' . '/App/src/Account/Controller/Login.php',
         'Wjcrypto\\Account\\Controller\\Logout' => __DIR__ . '/../..' . '/App/src/Account/Controller/Logout.php',
         'Wjcrypto\\Account\\Controller\\Transfer' => __DIR__ . '/../..' . '/App/src/Account/Controller/Transfer.php',
+        'Wjcrypto\\Account\\Controller\\Welcome' => __DIR__ . '/../..' . '/App/src/Account/Controller/Welcome.php',
         'Wjcrypto\\Account\\Controller\\Withdraw' => __DIR__ . '/../..' . '/App/src/Account/Controller/Withdraw.php',
         'Wjcrypto\\Account\\Exception\\InvalidAmountException' => __DIR__ . '/../..' . '/App/src/Account/Exception/InvalidAmountException.php',
         'Wjcrypto\\Account\\Exception\\InvalidTransferException' => __DIR__ . '/../..' . '/App/src/Account/Exception/InvalidTransferException.php',
@@ -468,6 +469,7 @@ class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
         'Wjcrypto\\Account\\Model\\LoginControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/LoginControllerHandler.php',
         'Wjcrypto\\Account\\Model\\ResourceModel\\AccountResource' => __DIR__ . '/../..' . '/App/src/Account/Model/ResourceModel/AccountResource.php',
         'Wjcrypto\\Account\\Model\\TransferControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/TransferControllerHandler.php',
+        'Wjcrypto\\Account\\Model\\WelcomeMessageControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/WelcomeMessageControllerHandler.php',
         'Wjcrypto\\Account\\Model\\WithdrawControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/WithdrawControllerHandler.php',
         'Wjcrypto\\Holder\\Controller\\HolderController' => __DIR__ . '/../..' . '/App/src/Holder/Controller/HolderController.php',
         'Wjcrypto\\Holder\\Controller\\SignUp' => __DIR__ . '/../..' . '/App/src/Holder/Controller/SignUp.php',
@@ -492,9 +494,9 @@ class ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitf9cd8ebd3db8a51e9bb1ecb18e68a596::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd805106827aa2f760fccec1ab8df20dd::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd805106827aa2f760fccec1ab8df20dd::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd805106827aa2f760fccec1ab8df20dd::$classMap;
 
         }, null, ClassLoader::class);
     }
