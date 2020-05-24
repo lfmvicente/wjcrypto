@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
-  `account` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `account_number` varchar(255) DEFAULT NULL,
   `balance` float DEFAULT '0',
-  PRIMARY KEY (`account`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `number_UNIQUE` (`account_number`),
   CONSTRAINT `fk_number` FOREIGN KEY (`account_number`) REFERENCES `holder` (`account_number`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (2,'S2kbdXYLSdB3WETAnZa3WQ==',50),(3,'7IVnreXlXrme2YzpMtbfsg==',-20),(4,'sLYVrtrHxbsYUfT4XFCXEA==',0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `holder` (
   `account_number` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_number_UNIQUE` (`account_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +73,36 @@ CREATE TABLE `holder` (
 
 LOCK TABLES `holder` WRITE;
 /*!40000 ALTER TABLE `holder` DISABLE KEYS */;
+INSERT INTO `holder` VALUES (2,'ly2WzdTvuDUs+2+ajkK85A==','ludK4NvV0BRDU9QzghPQ0Q==','HZQ3r05gAsKqm/WpKaI7xw==','2020-05-20 00:00:00','RUQEHg72eV3RyKVOL5x4Vw==','SgjuUchkYtONFcTURgPDP0b/1urBkM4usENYZHONlpM=','COAttOaBlQOQr8a6BaPjlg==','COAttOaBlQOQr8a6BaPjlg==','8k2MX1xhvmhwduy43mW7og=='),(3,'WBSn0CimnZM9IopOsbCphw==','91WFLRTUtIRacd8mmZkiPA==','OuX2JCQ2YNaCtVfZdXjuTw==','2020-05-20 00:00:00','QDixmoBhm3uoNQQqQcHcpQ==','3vt8BqHmt76rjkAcuZPkug==','WB5ycRhj8fnZThXJw4mT/Q==','WB5ycRhj8fnZThXJw4mT/Q==','S2kbdXYLSdB3WETAnZa3WQ=='),(4,'TpDDGzEmehQJeZE6aD9ybw==','QOHKVQTPz3hNpKR+gj+dtQ==','nbikBrQUiAO50GFYbtSPxQ==','2020-05-20 00:00:00','oXDYCLG2xQgIH/QBYXjHtg==','9tQmT9+Bfk+oTPU6H0y1pw==','1Z1wdguaYz22mJ0cI33xlw==','1Z1wdguaYz22mJ0cI33xlw==','7IVnreXlXrme2YzpMtbfsg=='),(5,'8jbq5PMp4HyGnWwf+oHhuQ==','+SRoynKPKshA5APEbBalbg==','OuX2JCQ2YNaCtVfZdXjuTw==','2020-02-01 00:00:00','sDFwFGUvmkv/yZ15n3GggQ==','6eUKnVPv1PGzFPmsLGwEOg==','BCk0FvqGpiFWkROKjAVQoQ==','BCk0FvqGpiFWkROKjAVQoQ==','sLYVrtrHxbsYUfT4XFCXEA==');
 /*!40000 ALTER TABLE `holder` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `token`
+--
+
+DROP TABLE IF EXISTS `token`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `token` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) NOT NULL,
+  `expiration` datetime NOT NULL,
+  `holder_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `holder_id_UNIQUE` (`holder_id`),
+  CONSTRAINT `fk_holder_id` FOREIGN KEY (`holder_id`) REFERENCES `holder` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `token`
+--
+
+LOCK TABLES `token` WRITE;
+/*!40000 ALTER TABLE `token` DISABLE KEYS */;
+INSERT INTO `token` VALUES (1,'WJ-5ec9f802c750e','2020-05-29 00:00:00',NULL),(2,'WJ-5ec9f96d05a02','2020-05-29 00:00:00',3);
+/*!40000 ALTER TABLE `token` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -84,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-23 20:59:55
+-- Dump completed on 2020-05-24  2:04:47
