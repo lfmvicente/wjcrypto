@@ -25,7 +25,8 @@ class CreateTokenRequestHandler
         $isAuthenticate = $this->holderResource->isAuthenticated($params['username'], $params['password']);
 
         if ($isAuthenticate === true) {
-            return $this->tokenResource->createToken();
+            $holder = $this->holderResource->login($params['username'], $params['password']);
+            return $this->tokenResource->createToken($holder->getId());
         }
         return false;
     }

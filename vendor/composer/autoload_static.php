@@ -625,6 +625,8 @@ class ComposerStaticInitd805106827aa2f760fccec1ab8df20dd
         'Wjcrypto\\Token\\Model\\CreateTokenRequestHandler' => __DIR__ . '/../..' . '/App/src/Token/Model/CreateTokenRequestHandler.php',
         'Wjcrypto\\Token\\Model\\ResourceModel\\TokenResource' => __DIR__ . '/../..' . '/App/src/Token/Model/ResourceModel/TokenResource.php',
         'Wjcrypto\\Token\\Model\\Token' => __DIR__ . '/../..' . '/App/src/Token/Model/Token.php',
+        'Wjcrypto\\WebApi\\Controller\\RestfullDeposit' => __DIR__ . '/../..' . '/App/src/WebApi/Controller/RestfullDeposit.php',
+        'Wjcrypto\\WebApi\\Model\\RestfullDepositControllerHandler' => __DIR__ . '/../..' . '/App/src/WebApi/Model/RestfullDepositControllerHandler.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

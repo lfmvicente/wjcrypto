@@ -535,4 +535,6 @@ return array(
     'Wjcrypto\\Token\\Model\\CreateTokenRequestHandler' => $baseDir . '/App/src/Token/Model/CreateTokenRequestHandler.php',
     'Wjcrypto\\Token\\Model\\ResourceModel\\TokenResource' => $baseDir . '/App/src/Token/Model/ResourceModel/TokenResource.php',
     'Wjcrypto\\Token\\Model\\Token' => $baseDir . '/App/src/Token/Model/Token.php',
+    'Wjcrypto\\WebApi\\Controller\\RestfullDeposit' => $baseDir . '/App/src/WebApi/Controller/RestfullDeposit.php',
+    'Wjcrypto\\WebApi\\Model\\RestfullDepositControllerHandler' => $baseDir . '/App/src/WebApi/Model/RestfullDepositControllerHandler.php',
 );
