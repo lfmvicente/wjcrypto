@@ -8,6 +8,7 @@ use Pecee\SimpleRouter\SimpleRouter;
 use Wjcrypto\Account\Model\WelcomeMessageControllerHandler;
 use Wjcrypto\Account\Api\AccountSessionControllerValidation;
 use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+use Wjcrypto\Logger\Model\Logger;
 
 class Welcome extends AccountSessionControllerValidation
 {
@@ -16,10 +17,11 @@ class Welcome extends AccountSessionControllerValidation
 
     public function __construct(
         WelcomeMessageControllerHandler $welcomeMessageControllerHandler,
-        HolderResource $holderResource
+        HolderResource $holderResource,
+        Logger $logger
     ){
         $this->welcomeMessageControllerHandler = $welcomeMessageControllerHandler;
-        parent::__construct($holderResource);
+        parent::__construct($holderResource, $logger);
     }
 
     public function execute(SimpleRouter $router)

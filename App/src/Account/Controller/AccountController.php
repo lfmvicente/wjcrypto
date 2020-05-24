@@ -8,15 +8,19 @@ use Pecee\SimpleRouter\SimpleRouter;
 use Wjcrypto\Account\Api\AccountSessionControllerValidation;
 use Wjcrypto\Account\Model\ResourceModel\AccountResource;
 use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+use Wjcrypto\Logger\Model\Logger;
 
 class AccountController extends AccountSessionControllerValidation
 {
     private $accountResource;
 
-    public function __construct(AccountResource $accountResource, HolderResource $holderResource)
-    {
+    public function __construct(
+        AccountResource $accountResource,
+        HolderResource $holderResource,
+        Logger $logger
+    ){
         $this->accountResource = $accountResource;
-        parent::__construct($holderResource);
+        parent::__construct($holderResource, $logger);
     }
 
     public function execute(SimpleRouter $router)

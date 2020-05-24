@@ -9,15 +9,19 @@ use Wjcrypto\Account\Exception\InvalidTransferException;
 use Wjcrypto\Account\Model\TransferControllerHandler;
 use Pecee\SimpleRouter\SimpleRouter;
 use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+use Wjcrypto\Logger\Model\Logger;
 
 class Transfer extends AccountSessionControllerValidation
 {
     private $transferControllerHandler;
 
-    public function __construct(TransferControllerHandler $transferControllerHandler, HolderResource $holderResource)
-    {
+    public function __construct(
+        TransferControllerHandler $transferControllerHandler,
+        HolderResource $holderResource,
+        Logger $logger
+    ){
         $this->transferControllerHandler = $transferControllerHandler;
-        parent::__construct($holderResource);
+        parent::__construct($holderResource, $logger);
     }
 
     public function execute(SimpleRouter $router)
@@ -26,10 +30,12 @@ class Transfer extends AccountSessionControllerValidation
             try {
                 $this->transferControllerHandler->execute($_POST, $_SESSION);
             } catch (InvalidTransferException $invalidTransferException) {
+                $this->logger->log('Transfer Error: ', $_POST);
                 $router::response()->json([
                     "message" => "Valor ou conta Inválidos"
                 ]);
             }
+            $this->logger->log('Transfer Success: ', $_POST);
             $router::response()->json([
                 "Message" => "Transferencia efetuada com sucesso",
                 "Value" => $_POST['amount'],

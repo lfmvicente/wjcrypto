@@ -9,15 +9,19 @@ use Wjcrypto\Account\Api\AccountSessionControllerValidation;
 use Wjcrypto\Account\Exception\InvalidAmountException;
 use Wjcrypto\Account\Model\DepositControllerHandler;
 use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+use Wjcrypto\Logger\Model\Logger;
 
 class Deposit extends AccountSessionControllerValidation
 {
     private $depositControllerHandler;
 
-    public function __construct(DepositControllerHandler $depositControllerHandler, HolderResource $holderResource)
-    {
+    public function __construct(
+        DepositControllerHandler $depositControllerHandler, 
+        HolderResource $holderResource,
+        Logger $logger
+    ){
         $this->depositControllerHandler = $depositControllerHandler;
-        parent::__construct($holderResource);
+        parent::__construct($holderResource, $logger);
     }
 
     public function execute(SimpleRouter $router)
@@ -26,10 +30,12 @@ class Deposit extends AccountSessionControllerValidation
             try {
                 $this->depositControllerHandler->execute($_POST, $_SESSION);
             } catch (InvalidAmountException $invalidAmountException) {
+                $this->logger->log('Deposit Error: ' . $invalidAmountException->getMessage());
                 $router::response()->json([
                     'message' => 'Depósito não efetuado'
                 ]);
             }
+            $this->logger->log('Deposit Success: ', $_POST);
             $router::response()->json([
                 'message' => 'Depósito efetuado com sucesso',
                 'value' => $_POST['amount'],

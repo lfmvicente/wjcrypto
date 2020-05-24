@@ -12,8 +12,10 @@ class Home extends AccountSessionControllerValidation
     public function execute(SimpleRouter $router)
     {
         if ($this->validateUserLogin() === true) {
+            $this->logger->log('Home Access: ', $_SESSION);
             $router::response()->redirect('/Html/home.html');
         }
+        $this->logger->log('Invalid Access: ', $_SESSION);
         $router::response()->redirect('/Html/index.html');
     }
 }

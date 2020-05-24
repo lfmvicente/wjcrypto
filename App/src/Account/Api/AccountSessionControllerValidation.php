@@ -5,18 +5,22 @@ declare(strict_types=1);
 namespace Wjcrypto\Account\Api;
 
 use Wjcrypto\Holder\Model\ResourceModel\HolderResource;
+use Wjcrypto\Logger\Model\Logger;
 
 abstract class AccountSessionControllerValidation
 {
     private $holderResource;
+    protected $logger;
 
-    public function __construct(HolderResource $holderResource)
+    public function __construct(HolderResource $holderResource, Logger $logger)
     {
         $this->holderResource = $holderResource;
+        $this->logger = $logger;
     }
 
     public function validateUserLogin()
     {
+        $this->logger->log('Page Access', [$_SERVER['REQUEST_URI']]);
         if (isset($_SESSION) &&
             isset($_SESSION['id']) &&
             isset($_SESSION['username']) &&

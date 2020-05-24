@@ -26,9 +26,10 @@ class Login
         try {
             $this->loginControllerHandler->execute($_POST);
         } catch (InvalidLoginException $invalidLoginException) {
-            $this->logger->log('Invalid Login: ' . $invalidLoginException->getMessage());
+            $this->logger->log('Invalid Login: ' . $invalidLoginException->getMessage(), $_POST);
             $router::response()->redirect('/Html/index.html');
         }
+        $this->logger->log('Login Success: ', $_POST);
         $router::response()->redirect('/home');
     }
 }
