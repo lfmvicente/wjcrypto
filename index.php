@@ -18,8 +18,9 @@
     use Wjcrypto\Account\Controller\Deposit;
     use Wjcrypto\Holder\Controller\HolderController;
     use Wjcrypto\Account\Controller\Welcome;
+use Wjcrypto\Logger\Model\Logger;
 
-    $container = (new ContainerBuilder())
+$container = (new ContainerBuilder())
         ->useAutowiring(true)
         ->build();
 
@@ -30,6 +31,7 @@
     $router->get('/', function() use($router, $container) {
         $indexController = $container->make(IndexController::class);
         $indexController->execute($router);
+        
     });
 
     $router->post('/token', function() use($router, $container) {
@@ -86,7 +88,5 @@
         $welcomeController = $container->make(Welcome::class);
         $welcomeController->execute($router);
     });
-
-
 
     $router->start();
