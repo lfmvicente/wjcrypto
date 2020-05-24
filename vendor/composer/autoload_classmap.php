@@ -394,6 +394,7 @@ return array(
     'Wjcrypto\\Account\\Model\\TransferControllerHandler' => $baseDir . '/App/src/Account/Model/TransferControllerHandler.php',
     'Wjcrypto\\Account\\Model\\WelcomeMessageControllerHandler' => $baseDir . '/App/src/Account/Model/WelcomeMessageControllerHandler.php',
     'Wjcrypto\\Account\\Model\\WithdrawControllerHandler' => $baseDir . '/App/src/Account/Model/WithdrawControllerHandler.php',
+    'Wjcrypto\\Encryptor\\Model\\Encryptor' => $baseDir . '/App/src/Encryptor/Model/Encrypt.php',
     'Wjcrypto\\Holder\\Controller\\HolderController' => $baseDir . '/App/src/Holder/Controller/HolderController.php',
     'Wjcrypto\\Holder\\Controller\\SignUp' => $baseDir . '/App/src/Holder/Controller/SignUp.php',
     'Wjcrypto\\Holder\\Exception\\HolderNotFoundException' => $baseDir . '/App/src/Holder/Exception/HolderNotFoundException.php',

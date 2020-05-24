@@ -12,7 +12,6 @@
         private $id;
         private $number;
         private $balance;
-        private $holder;
 
         public function __construct()
         {
@@ -47,16 +46,6 @@
         public function setBalance($balance)
         {
             $this->balance = $balance;
-        }
-
-        public function getHolderId()
-        {
-            return $this->holder;
-        }
-
-        public function setHolderId($holder)
-        {
-            $this->holder = $holder;
         }
 
         public function __toString()

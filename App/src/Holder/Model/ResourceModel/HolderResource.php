@@ -9,20 +9,20 @@
     use Wjcrypto\Holder\Exception\InvalidLoginException;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Holder\Model\Holder;
-
-    define('SECRET_IV', pack('a16', 'wjcrypto'));
-    define('SECRET', pack('a16', 'wjcrypto'));
+    use Wjcrypto\Encryptor\Model\Encryptor;
 
     class HolderResource
     {
         private $sql;
         private $holder;
+        private $encrypt;
         private const QUERY = 'SELECT username, password FROM holder WHERE username = :USERNAME AND password = :PASSWORD';
 
-        public function __construct(Sql $sql, Holder $holder)
+        public function __construct(Sql $sql, Holder $holder, Encryptor $encrypt)
         {
             $this->sql = $sql;
             $this->holder = $holder;
+            $this->encrypt = $encrypt;
         }
 
         public function getById($id)
@@ -50,12 +50,11 @@
 
         public function login($username, $password)
         {
-            $crypto = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
             $results = $this->sql->select(
                 "SELECT * FROM holder WHERE username = :USERNAME AND password = :PASSWORD",
                  array(
-                    ":USERNAME"=>$username,
-                    ":PASSWORD"=>$crypto
+                    ":USERNAME"=>$this->encrypt->encrypt($username),
+                    ":PASSWORD"=>$this->encrypt->encrypt($password)
                 )
             );
 
@@ -113,10 +112,9 @@
 
         public function isAuthenticated(string $username, string $password): bool
         {
-            $crypto = openssl_encrypt($password,'AES-128-CBC','SECRET', 0, 'SECRET_IV');
             $result = $this->sql->select(self::QUERY,[
-                ':USERNAME' => $username,
-                ':PASSWORD' => $crypto
+                ':USERNAME' => $this->encrypt->encrypt($username),
+                ':PASSWORD' => $this->encrypt->encrypt($password)
             ]);
             return (count($result) > 0);
         }
@@ -129,22 +127,22 @@
 
         public function create(array $params)
         {
-            $crypto = openssl_encrypt($params['password'],'AES-128-CBC','SECRET', 0, 'SECRET_IV');
+            $number  = $this->encrypt->encrypt(uniqid());
             $results = $this->sql->query(
                 "INSERT INTO holder 
                 (name, document, additional_document, dt_origin, phone, 
                 address, username, password, account_number)
                 VALUES (:name, :document, :additional_document, :dtorigin, 
                 :phone, :address, :username, :password, :account_number)", array(
-                "name"=>$params['name'],
-                "document"=>$params['document'],
-                "additional_document"=>$params['additional_document'],
+                "name"=>$this->encrypt->encrypt($params['name']),
+                "document"=>$this->encrypt->encrypt($params['document']),
+                "additional_document"=>$this->encrypt->encrypt($params['additional_document']),
                 "dtorigin"=>$params['dt_origin'],
-                "phone"=>$params['phone'],
-                "address"=>$params['address'],
-                "username"=>$params['username'],
-                "password"=>$crypto,
-                "account_number"=>uniqid()
+                "phone"=>$this->encrypt->encrypt($params['phone']),
+                "address"=>$this->encrypt->encrypt($params['address']),
+                "username"=>$this->encrypt->encrypt($params['username']),
+                "password"=>$this->encrypt->encrypt($params['password']),
+                "account_number"=>$number
             ));
             return $results;
         }

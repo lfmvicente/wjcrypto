@@ -9,19 +9,24 @@ class Sql
 
     const HOST = 'localhost';
     const DB = 'wjcrypto';
-    const USER = 'root';
-    const PWD = 'luis.vicente';
+    const USER = 'webjump-nb138';
+    const PWD = 'root';
 
     private $conn;
 
 	public function __construct()
     {
-        $this->conn = new \PDO (
-            "mysql:host=".Sql::HOST.";
-            dbname=".Sql::DB,
-            Sql::USER,
-            Sql::PWD
-        );
+        try {
+
+            $this->conn = new \PDO (
+                "mysql:host=" . Sql::HOST . ";
+            dbname=" . Sql::DB,
+                Sql::USER,
+                Sql::PWD
+            );
+        } catch(\Exception $e) {
+            die($e->getMessage());
+        }
 	}
 
 	private function setParams($statement, $parameters = array())

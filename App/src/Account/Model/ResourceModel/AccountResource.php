@@ -8,7 +8,6 @@
     use Wjcrypto\Account\Exception\InvalidTransferException;
     use Wjcrypto\Account\Exception\NoFundsException;
     use Wjcrypto\Account\Exception\NotFoundAccountException;
-    use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Account\Model\Account;
 
@@ -36,7 +35,6 @@
                 $this->account->setId($row['id']);
                 $this->account->setNumber($row['account_number']);
                 $this->account->setBalance($row['balance']);
-                $this->account->setHolderId($row['id_holder']);
             }
             return $this->account;
         }
@@ -44,11 +42,10 @@
         public function insert(Account $account)
         {
             $this->sql->query(
-                "INSERT INTO account (account_number, balance, id_holder)
-                    VALUES (:number, :balance, :id_holder)", array(
+                "INSERT INTO account (account_number, balance)
+                    VALUES (:number, :balance)", array(
                         "number"=>uniqid(),
-                        "balance"=>$account->getBalance(),
-                        "id_holder"=>$account->getHolderId()
+                        "balance"=>$account->getBalance()
             ));
             return $this;
         }

@@ -471,6 +471,7 @@ class ComposerStaticInitd805106827aa2f760fccec1ab8df20dd
         'Wjcrypto\\Account\\Model\\TransferControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/TransferControllerHandler.php',
         'Wjcrypto\\Account\\Model\\WelcomeMessageControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/WelcomeMessageControllerHandler.php',
         'Wjcrypto\\Account\\Model\\WithdrawControllerHandler' => __DIR__ . '/../..' . '/App/src/Account/Model/WithdrawControllerHandler.php',
+        'Wjcrypto\\Encryptor\\Model\\Encryptor' => __DIR__ . '/../..' . '/App/src/Encryptor/Model/Encrypt.php',
         'Wjcrypto\\Holder\\Controller\\HolderController' => __DIR__ . '/../..' . '/App/src/Holder/Controller/HolderController.php',
         'Wjcrypto\\Holder\\Controller\\SignUp' => __DIR__ . '/../..' . '/App/src/Holder/Controller/SignUp.php',
         'Wjcrypto\\Holder\\Exception\\HolderNotFoundException' => __DIR__ . '/../..' . '/App/src/Holder/Exception/HolderNotFoundException.php',
