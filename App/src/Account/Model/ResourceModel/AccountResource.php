@@ -111,30 +111,45 @@
 
         public function transfer($amount, $accountDestination, $accountOrigin)
         {
-            $results = $this->sql->select(
-                "SELECT balance, account_number FROM account WHERE account_number in (:ORIGIN, :DESTINATION)",
+            $origin = $this->sql->select(
+                "SELECT * FROM account WHERE account_number = :ORIGIN",
                 [
-                    "ORIGIN"=>$accountOrigin,
-                    "DESTINATION"=>$accountDestination
+                    "ORIGIN"=>$accountOrigin
+                ]
+            );
+
+            $destination = $this->sql->select(
+                "SELECT * FROM account WHERE account_number = :DESTINATION",
+                [
+                   "DESTINATION"=>$accountDestination
+                ]
+            );
+
+            if (count($destination) < 0) {
+                return false;
+            }
+
+            $origin[0]['balance'] = $origin[0]['balance'] - $amount;
+            $destination[0]['balance'] = $destination[0]['balance'] + $amount;
+
+            $_SESSION['balance'] = $origin[0]['balance'];
+            try{
+                $this->sql->query(
+                    "UPDATE account SET balance = :BALANCE WHERE account_number = :ORIGIN",
+                [
+                    "BALANCE"=>$origin[0]['balance'],
+                    "ORIGIN"=>$origin[0]['account_number']
                 ]);
 
-            $results[0]['balance'] += $amount;
-            $results[1]['balance'] -= $amount;
-
-            $this->sql->query(
-                "UPDATE account SET balance = :BALANCE WHERE account_number = :ORIGIN",
-            [
-                "BALANCE"=>$results[1]['balance'],
-                "ORIGIN"=>$results[1]['account_number']
-            ]);
-
-            $this->sql->query(
-                "UPDATE account SET balance = :BALANCE WHERE account_number = :DESTINATION",
-                [
-                    "BALANCE"=>$results[0]['balance'],
-                    "DESTINATION"=>$results[0]['account_number']
-                ]);
-            $_SESSION['balance'] = $results[1]['balance'];
+                $this->sql->query(
+                    "UPDATE account SET balance = :BALANCE WHERE account_number = :DESTINATION",
+                    [
+                        "BALANCE"=>$destination[0]['balance'],
+                        "DESTINATION"=>$destination[0]['account_number']
+                    ]);
+            } catch (\Exception $exception) {
+                die($exception->getMessage());
+            }
             return $this;
         }
 

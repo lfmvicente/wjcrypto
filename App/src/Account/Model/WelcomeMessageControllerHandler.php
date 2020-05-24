@@ -4,19 +4,25 @@ declare(strict_types=1);
 
 namespace Wjcrypto\Account\Model;
 
-use Wjcrypto\Account\Model\ResourceModel\AccountResource;
+use Wjcrypto\Encryptor\Model\Encryptor;
 
 class WelcomeMessageControllerHandler
 {
-    private $accountResource;
 
-    public function __construct(AccountResource $accountResource)
+    private $encrypt;
+
+    public function __construct(Encryptor $encrypt)
     {
-        $this->accountResource = $accountResource;
+        $this->encrypt = $encrypt;
     }
-
+    
     public function execute()
     {
-        return 'Olá ' . $_SESSION['name'] . ', seu saldo é de R$ ' . $_SESSION['balance'];
+        return 
+            'Olá ' .
+            $this->encrypt->decrypt($_SESSION['name']) .
+            ', seu saldo é de R$ ' . $_SESSION['balance'] .
+            '. Numero da Conta: ' .
+            $this->encrypt->decrypt($_SESSION['account_number']);
     }
 }

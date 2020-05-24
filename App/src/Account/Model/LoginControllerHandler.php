@@ -11,7 +11,6 @@ class LoginControllerHandler
 {
 
     private $holderResource;
-    private $accountResource;
 
     public function __construct(HolderResource $holderResource)
     {

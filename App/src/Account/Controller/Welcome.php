@@ -18,7 +18,7 @@ class Welcome extends AccountSessionControllerValidation
         WelcomeMessageControllerHandler $welcomeMessageControllerHandler,
         HolderResource $holderResource
     ){
-        $this->welcomeMessageControllerHandler  = $welcomeMessageControllerHandler;
+        $this->welcomeMessageControllerHandler = $welcomeMessageControllerHandler;
         parent::__construct($holderResource);
     }
 
@@ -26,7 +26,7 @@ class Welcome extends AccountSessionControllerValidation
     {
         if ($this->validateUserLogin() === true) {
             $router::response()->json([
-                $this->welcomeMessageControllerHandler->execute()
+               'msg' => $this->welcomeMessageControllerHandler->execute()
             ]);
         } else {
             $router::response()->redirect('/Html/index.html');
