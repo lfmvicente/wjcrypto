@@ -4,25 +4,37 @@
 
     namespace Wjcrypto\Holder\Model\ResourceModel;
 
-    use Wjcrypto\Account\Model\Account;
+use Wjcrypto\Account\Api\AccountSessionControllerValidation;
+use Wjcrypto\Account\Model\Account;
     use Wjcrypto\Holder\Exception\HolderNotFoundException;
     use Wjcrypto\Holder\Exception\InvalidLoginException;
     use Wjcrypto\SqlDb\Model\ResourceModel\Sql;
     use Wjcrypto\Holder\Model\Holder;
     use Wjcrypto\Encryptor\Model\Encryptor;
+    use Wjcrypto\Account\Model\ResourceModel\AccountResource;
 
     class HolderResource
     {
         private $sql;
         private $holder;
         private $encrypt;
+        private $account;
+        private $accountResource;
+
         private const QUERY = 'SELECT username, password FROM holder WHERE username = :USERNAME AND password = :PASSWORD';
 
-        public function __construct(Sql $sql, Holder $holder, Encryptor $encrypt)
-        {
+        public function __construct(
+            Sql $sql,
+            Holder $holder,
+            Encryptor $encrypt,
+            Account $account,
+            AccountResource $accountResource
+        ){
             $this->sql = $sql;
             $this->holder = $holder;
             $this->encrypt = $encrypt;
+            $this->account = $account;
+            $this->accountResource = $accountResource;
         }
 
         public function getById($id)
@@ -144,7 +156,8 @@
                 "password"=>$this->encrypt->encrypt($params['password']),
                 "account_number"=>$number
             ));
-            return $results;
+            $this->account->setNumber($number);
+            $this->accountResource->insert($this->account);
         }
 
         public function getBalance($account)

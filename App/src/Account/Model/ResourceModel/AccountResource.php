@@ -44,7 +44,7 @@
             $this->sql->query(
                 "INSERT INTO account (account_number, balance)
                     VALUES (:number, :balance)", array(
-                        "number"=>uniqid(),
+                        "number"=>$account->getNumber(),
                         "balance"=>$account->getBalance()
             ));
             return $this;
