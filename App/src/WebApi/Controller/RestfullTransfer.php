@@ -9,28 +9,28 @@ use Wjcrypto\Logger\Model\Logger;
 use Wjcrypto\Token\Api\TokenAuthenticate;
 use Wjcrypto\Token\Exception\InvalidTokenException;
 use Wjcrypto\Token\Model\ResourceModel\TokenResource;
-use Wjcrypto\WebApi\Model\RestfullWithdrawControllerHandler;
+use Wjcrypto\WebApi\Model\RestfullTransferControllerHandler;
 
-class RestfullWithdraw extends TokenAuthenticate
+class RestfullTransfer extends TokenAuthenticate
 {
-    private $restfullWithdrawControllerHandler;
+    private $restfullTransferControllerHandler;
 
     public function __construct(
         TokenResource $tokenResource,
         Logger $logger,
-        RestfullWithdrawControllerHandler $restfullWithdrawControllerHandler
+        RestfullTransferControllerHandler $restfullTransferControllerHandler
     ){
         parent::__construct($tokenResource, $logger);
-        $this->restfullWithdrawControllerHandler = $restfullWithdrawControllerHandler;
+        $this->restfullTransferControllerHandler = $restfullTransferControllerHandler;
     }
 
     public function execute(SimpleRouter $router)
     {
         if ($this->isValidRequest($router) == true) {
             try{
-                $this->restfullWithdrawControllerHandler->execute($_POST, $this->token);
+                $this->restfullTransferControllerHandler->execute($_POST, $this->token);
                 $router::response()->json([
-                    'msg'=>'Success Withdraw'
+                    'msg'=>'Success Transfer'
                 ]);
             } catch (InvalidTokenException $invalidTokenException) {
                 $this->logger->log($invalidTokenException->getMessage());

@@ -20,6 +20,7 @@ use Wjcrypto\Holder\Controller\HolderController;
 use Wjcrypto\Account\Controller\Welcome;
 use Wjcrypto\Logger\Model\Logger;
 use Wjcrypto\WebApi\Controller\RestfullDeposit;
+use Wjcrypto\WebApi\Controller\RestfullTransfer;
 use Wjcrypto\WebApi\Controller\RestfullWithdraw;
 
 $container = (new ContainerBuilder())
@@ -49,16 +50,6 @@ $router->post('/login', function() use($router, $container) {
 $router->get('/home', function() use($router, $container) {
     $homeController = $container->make(Home::class);
     $homeController->execute($router);
-});
-
-$router->get('/holders', function() use($router, $container) {
-    $holderController = $container->make(HolderController::class);
-    $holderController->execute($router);
-});
-
-$router->get('/accounts', function() use($router, $container) {
-    $accountController = $container->make(AccountController::class);
-    $accountController->execute($router);
 });
 
 $router->post('/deposit', function() use($router, $container) {
@@ -104,6 +95,16 @@ $router->post('/rest/withdraw', function() use($router, $container) {
 $router->post('/rest/transfer', function() use($router, $container) {
     $transferRestController = $container->make(RestfullTransfer::class);
     $transferRestController->execute($router);
+});
+
+$router->get('/rest/holders', function() use($router, $container) {
+    $holderController = $container->make(HolderController::class);
+    $holderController->execute($router);
+});
+
+$router->get('/rest/accounts', function() use($router, $container) {
+    $accountController = $container->make(AccountController::class);
+    $accountController->execute($router);
 });
 
 $router->start();
