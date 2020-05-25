@@ -85,6 +85,11 @@ div {
     background-color: white;
     height: 100px;
 }
+#banner_sign {
+    background-color: white;
+    height: 100px;
+    text-align: center;
+}
 
 #menu ul {
     padding:0px;
@@ -121,9 +126,5 @@ div {
 }
 
 #cadastro {
-    text-align: left;
-}
-
-#signup {
-    text-align: left;
+    text-align: center;
 }

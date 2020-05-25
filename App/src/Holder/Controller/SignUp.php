@@ -34,6 +34,5 @@ class SignUp
         $router::response()->json([
             'message' => 'Cadastro concluído com sucesso'
         ]);
-        $router::response()->redirect('/Html/index.html');
     }
 }

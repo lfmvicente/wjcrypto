@@ -29,6 +29,7 @@ class RestfullDeposit extends TokenAuthenticate
         if ($this->isValidRequest($router) == true) {
             try{
                 $this->restfullDepositControllerHandler->execute($_POST, $this->token);
+                $this->logger->log('Deposit Success: ', $_POST);
                 $router::response()->json([
                     'msg'=>'Success Deposit'
                 ]);

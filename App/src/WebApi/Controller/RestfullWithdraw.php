@@ -29,6 +29,7 @@ class RestfullWithdraw extends TokenAuthenticate
         if ($this->isValidRequest($router) == true) {
             try{
                 $this->restfullWithdrawControllerHandler->execute($_POST, $this->token);
+                $this->logger->log('Withdraw Success: ', $_POST);
                 $router::response()->json([
                     'msg'=>'Success Withdraw'
                 ]);

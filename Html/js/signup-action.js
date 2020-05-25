@@ -13,5 +13,7 @@ $(document).on('click', '.signup', function () {
             'username': $('input[name="username"]')[0].value,
             'password': $('input[name="password"]')[0].value
         }
-    });
+    },
+        $(location).attr('href', 'index.html')
+    );
 });

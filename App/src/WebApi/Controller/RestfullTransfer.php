@@ -29,6 +29,7 @@ class RestfullTransfer extends TokenAuthenticate
         if ($this->isValidRequest($router) == true) {
             try{
                 $this->restfullTransferControllerHandler->execute($_POST, $this->token);
+                $this->logger->log('Transfer Success: ', $_POST);
                 $router::response()->json([
                     'msg'=>'Success Transfer'
                 ]);
