@@ -43,3 +43,4 @@
 [2020-05-25T09:33:44.331130-03:00] wjcrypto.INFO: Page Access ["/welcome"] []
 [2020-05-25T09:38:29.183322-03:00] wjcrypto.INFO: SignUp Success:  {"name":"Webjump","document":"987987987","additional_document":"98797987987","dt_origin":"2020-05-20","phone":"11989595959","address":"Rua Webjump, 1000","username":"webjump","password":"webjump"} []
 [2020-05-25T09:41:56.576705-03:00] wjcrypto.INFO: SignUp Success:  {"name":"Webjump","document":"987987987","additional_document":"98797987987","dt_origin":"2020-05-20","phone":"11989595959","address":"Rua Webjump, 1000","username":"webjump","password":"webjump"} []
+[2020-05-25T10:31:28.602562-03:00] wjcrypto.INFO: Entity Error: Could Not Find Token: WJ-5ec9f96d05a02sd [] []

@@ -626,9 +626,11 @@ class ComposerStaticInitd805106827aa2f760fccec1ab8df20dd
         'Wjcrypto\\Token\\Model\\ResourceModel\\TokenResource' => __DIR__ . '/../..' . '/App/src/Token/Model/ResourceModel/TokenResource.php',
         'Wjcrypto\\Token\\Model\\Token' => __DIR__ . '/../..' . '/App/src/Token/Model/Token.php',
         'Wjcrypto\\WebApi\\Controller\\RestfullDeposit' => __DIR__ . '/../..' . '/App/src/WebApi/Controller/RestfullDeposit.php',
+        'Wjcrypto\\WebApi\\Controller\\RestfullHolder' => __DIR__ . '/../..' . '/App/src/WebApi/Controller/RestfullHolder.php',
         'Wjcrypto\\WebApi\\Controller\\RestfullTransfer' => __DIR__ . '/../..' . '/App/src/WebApi/Controller/RestfullTransfer.php',
         'Wjcrypto\\WebApi\\Controller\\RestfullWithdraw' => __DIR__ . '/../..' . '/App/src/WebApi/Controller/RestfullWithdraw.php',
         'Wjcrypto\\WebApi\\Model\\RestfullDepositControllerHandler' => __DIR__ . '/../..' . '/App/src/WebApi/Model/RestfullDepositControllerHandler.php',
+        'Wjcrypto\\WebApi\\Model\\RestfullHolderControllerHandler' => __DIR__ . '/../..' . '/App/src/WebApi/Model/RestfullHolderControllerHandler.php',
         'Wjcrypto\\WebApi\\Model\\RestfullTransferControllerHandler' => __DIR__ . '/../..' . '/App/src/WebApi/Model/RestfullTransferControllerHandler.php',
         'Wjcrypto\\WebApi\\Model\\RestfullWithdrawControllerHandler' => __DIR__ . '/../..' . '/App/src/WebApi/Model/RestfullWithdrawControllerHandler.php',
     );

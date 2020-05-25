@@ -90,7 +90,7 @@ use Wjcrypto\Account\Model\Account;
 
         public function delete($id)
         {
-            $result = $this->sql->query("DELETE FROM holder WHERE id = :ID", array(
+            $this->sql->query("DELETE FROM holder WHERE id = :ID", array(
                 "ID"=>$id
             ));
             return $this;

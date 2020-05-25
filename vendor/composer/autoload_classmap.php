@@ -536,9 +536,11 @@ return array(
     'Wjcrypto\\Token\\Model\\ResourceModel\\TokenResource' => $baseDir . '/App/src/Token/Model/ResourceModel/TokenResource.php',
     'Wjcrypto\\Token\\Model\\Token' => $baseDir . '/App/src/Token/Model/Token.php',
     'Wjcrypto\\WebApi\\Controller\\RestfullDeposit' => $baseDir . '/App/src/WebApi/Controller/RestfullDeposit.php',
+    'Wjcrypto\\WebApi\\Controller\\RestfullHolder' => $baseDir . '/App/src/WebApi/Controller/RestfullHolder.php',
     'Wjcrypto\\WebApi\\Controller\\RestfullTransfer' => $baseDir . '/App/src/WebApi/Controller/RestfullTransfer.php',
     'Wjcrypto\\WebApi\\Controller\\RestfullWithdraw' => $baseDir . '/App/src/WebApi/Controller/RestfullWithdraw.php',
     'Wjcrypto\\WebApi\\Model\\RestfullDepositControllerHandler' => $baseDir . '/App/src/WebApi/Model/RestfullDepositControllerHandler.php',
+    'Wjcrypto\\WebApi\\Model\\RestfullHolderControllerHandler' => $baseDir . '/App/src/WebApi/Model/RestfullHolderControllerHandler.php',
     'Wjcrypto\\WebApi\\Model\\RestfullTransferControllerHandler' => $baseDir . '/App/src/WebApi/Model/RestfullTransferControllerHandler.php',
     'Wjcrypto\\WebApi\\Model\\RestfullWithdrawControllerHandler' => $baseDir . '/App/src/WebApi/Model/RestfullWithdrawControllerHandler.php',
 );

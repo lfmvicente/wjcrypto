@@ -20,6 +20,7 @@ use Wjcrypto\Holder\Controller\HolderController;
 use Wjcrypto\Account\Controller\Welcome;
 use Wjcrypto\Logger\Model\Logger;
 use Wjcrypto\WebApi\Controller\RestfullDeposit;
+use Wjcrypto\WebApi\Controller\RestfullHolder;
 use Wjcrypto\WebApi\Controller\RestfullTransfer;
 use Wjcrypto\WebApi\Controller\RestfullWithdraw;
 
@@ -98,13 +99,8 @@ $router->post('/rest/transfer', function() use($router, $container) {
 });
 
 $router->get('/rest/holders', function() use($router, $container) {
-    $holderController = $container->make(HolderController::class);
+    $holderController = $container->make(RestfullHolder::class);
     $holderController->execute($router);
-});
-
-$router->get('/rest/accounts', function() use($router, $container) {
-    $accountController = $container->make(AccountController::class);
-    $accountController->execute($router);
 });
 
 $router->start();
