@@ -74,7 +74,6 @@
             if ($amount <= 0) {
                 throw new InvalidAmountException('Invalid Amount');
             }
-
             $results[0]['balance'] += $amount;
 
             $this->sql->query("UPDATE account SET balance = :BALANCE WHERE account_number = :ACCOUNT",
@@ -95,7 +94,7 @@
                 throw new InvalidAmountException('Invalid Amount');
             }
             if ($results[0]['balance'] <= 0) {
-                throw new NoFundsException('No Funds');
+                throw new InvalidAmountException('No Funds');
             }
 
             $results[0]['balance'] -= $amount;

@@ -32,12 +32,12 @@ class Deposit extends AccountSessionControllerValidation
             } catch (InvalidAmountException $invalidAmountException) {
                 $this->logger->log('Deposit Error: ' . $invalidAmountException->getMessage());
                 $router::response()->json([
-                    'message' => 'Depósito não efetuado'
+                    'message' => 'Deposit Cancelled'
                 ]);
             }
             $this->logger->log('Deposit Success: ', $_POST);
             $router::response()->json([
-                'message' => 'Depósito efetuado com sucesso',
+                'message' => 'Deposit Success',
                 'value' => $_POST['amount'],
                 'account' => $_SESSION['account_number']
             ]);

@@ -27,12 +27,12 @@ class SignUp
         } catch (InvalidDataException $invalidDataException) {
             $this->logger->log('SignUp Error: ' . $invalidDataException->getMessage());
             $router::response()->json([
-                'message' => 'Dados inválidos, preencha novamente'
+                'message' => 'Invalid data, please try again'
             ]);
         }
         $this->logger->log('SignUp Success: ', $_POST);
         $router::response()->json([
-            'message' => 'Cadastro concluído com sucesso'
+            'message' => 'Sign Up Success'
         ]);
     }
 }

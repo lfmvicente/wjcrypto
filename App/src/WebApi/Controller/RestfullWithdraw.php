@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Wjcrypto\WebApi\Controller;
 
 use Pecee\SimpleRouter\SimpleRouter;
+use Wjcrypto\Account\Exception\InvalidAmountException;
 use Wjcrypto\Logger\Model\Logger;
 use Wjcrypto\Token\Api\TokenAuthenticate;
 use Wjcrypto\Token\Exception\InvalidTokenException;
@@ -31,12 +32,12 @@ class RestfullWithdraw extends TokenAuthenticate
                 $this->restfullWithdrawControllerHandler->execute($_POST, $this->token);
                 $this->logger->log('Withdraw Success: ', $_POST);
                 $router::response()->json([
-                    'msg'=>'Success Withdraw'
+                    'msg'=>'Withdraw Success'
                 ]);
-            } catch (InvalidTokenException $invalidTokenException) {
-                $this->logger->log($invalidTokenException->getMessage());
+            } catch (InvalidAmountException $invalidAmountException) {
+                $this->logger->log($invalidAmountException->getMessage());
                 $router::response()->json([
-                    'msg'=>$invalidTokenException->getMessage()
+                    'msg'=>$invalidAmountException->getMessage()
                 ]);
             }
         }

@@ -33,12 +33,12 @@ class Withdraw extends AccountSessionControllerValidation
             } catch (InvalidAmountException $invalidAmountException) {
                 $this->logger->log('Withdraw Error: ', $_POST);
                 $router::response()->json([
-                    'message' => 'Saque não efetuado'
+                    'message' => 'Withdraw Cancelled'
                 ]);
             }
             $this->logger->log('Withdraw Success: ', $_POST);
             $router::response()->json([
-                'message' => 'Saque efetuado com sucesso',
+                'message' => 'Withdraw Success',
                 'value' => $_POST['amount'],
                 'account' => $_SESSION['account_number']
             ]);

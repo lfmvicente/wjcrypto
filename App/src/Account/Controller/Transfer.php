@@ -32,12 +32,12 @@ class Transfer extends AccountSessionControllerValidation
             } catch (InvalidTransferException $invalidTransferException) {
                 $this->logger->log('Transfer Error: ', $_POST);
                 $router::response()->json([
-                    "message" => "Valor ou conta Inválidos"
+                    "message" => "Transfer Cancelled"
                 ]);
             }
             $this->logger->log('Transfer Success: ', $_POST);
             $router::response()->json([
-                "Message" => "Transferencia efetuada com sucesso",
+                "Message" => "Transfer Success",
                 "Value" => $_POST['amount'],
                 "Destination Account" => $_POST['account']
             ]);

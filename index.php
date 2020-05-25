@@ -6,7 +6,6 @@ session_start();
 
 use DI\ContainerBuilder;
 use Pecee\SimpleRouter\SimpleRouter;
-use Wjcrypto\Account\Controller\AccountController;
 use Wjcrypto\Account\Controller\IndexController;
 use Wjcrypto\Account\Controller\Logout;
 use Wjcrypto\Account\Controller\Transfer;
@@ -16,11 +15,8 @@ use Wjcrypto\Token\Controller\CreateToken;
 use Wjcrypto\Account\Controller\Home;
 use Wjcrypto\Account\Controller\Login;
 use Wjcrypto\Account\Controller\Deposit;
-use Wjcrypto\Holder\Controller\HolderController;
 use Wjcrypto\Account\Controller\Welcome;
-use Wjcrypto\Logger\Model\Logger;
 use Wjcrypto\WebApi\Controller\RestfullDeposit;
-use Wjcrypto\WebApi\Controller\RestfullHolder;
 use Wjcrypto\WebApi\Controller\RestfullTransfer;
 use Wjcrypto\WebApi\Controller\RestfullWithdraw;
 
@@ -96,11 +92,6 @@ $router->post('/rest/withdraw', function() use($router, $container) {
 $router->post('/rest/transfer', function() use($router, $container) {
     $transferRestController = $container->make(RestfullTransfer::class);
     $transferRestController->execute($router);
-});
-
-$router->get('/rest/holders', function() use($router, $container) {
-    $holderController = $container->make(RestfullHolder::class);
-    $holderController->execute($router);
 });
 
 $router->start();
