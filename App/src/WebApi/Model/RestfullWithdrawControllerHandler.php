@@ -7,7 +7,7 @@ namespace Wjcrypto\WebApi\Model;
 use Wjcrypto\Token\Model\ResourceModel\TokenResource;
 use Wjcrypto\Account\Model\ResourceModel\AccountResource;
 
-class RestfullDepositControllerHandler
+class RestfullWithdrawControllerHandler
 {
     private $tokenResource;
     private $accountResource;
@@ -21,6 +21,6 @@ class RestfullDepositControllerHandler
     public function execute(array $params, string $token = '')
     {
         $holder = $this->tokenResource->getHolderByToken($token);
-        $this->accountResource->deposit($params['amount'], $holder->getAccountNumber());
+        $this->accountResource->withdraw($params['amount'], $holder->getAccountNumber());
     }
 }

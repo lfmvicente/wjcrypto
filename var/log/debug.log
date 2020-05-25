@@ -23,3 +23,5 @@
 [2020-05-24T01:05:19.329842-03:00] wjcrypto.INFO: Page Access ["/welcome"] []
 [2020-05-24T01:05:23.407277-03:00] wjcrypto.INFO: Page Access ["/deposit"] []
 [2020-05-24T01:05:23.408075-03:00] wjcrypto.INFO: Deposit Error: Invalid Amount [] []
+[2020-05-24T02:07:22.011734-03:00] wjcrypto.INFO: Entity Error: Could Not Find Token: WJ-5ec9f96d05a024 [] []
+[2020-05-25T09:12:46.538500-03:00] wjcrypto.INFO: Entity Error: Could Not Find Token: WJ-5ec9f96d05a023232 [] []
