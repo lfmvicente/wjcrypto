@@ -1,0 +1,130 @@
+body {
+    padding: 0;
+    margin: 0;
+    
+}
+
+.home {
+    background-color: #A9A9A9;
+}
+
+main {
+    text-align: center;
+    background: white;
+    margin: 100px 500px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+main img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+form {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: block;
+}
+
+#index {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    font-weight: bold;
+}
+
+div {
+    padding: 5px;
+}
+
+.button{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: center;
+    font-size: 16px;
+    align-items: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.button:hover {opacity: 0.6}
+
+.button_sign{
+    background-color: #054f77; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: center;
+    font-size: 16px;
+    align-items: center;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.button_sign:hover {opacity: 0.6}
+
+
+.label {
+    width:100px;
+    display: inline;
+}
+
+#banner {
+    background-color: white;
+    height: 100px;
+}
+#banner_sign {
+    background-color: white;
+    height: 100px;
+    text-align: center;
+}
+
+#menu ul {
+    padding:0px;
+    margin:0px;
+    background-color:#4CAF50;
+    list-style:none;
+    height: 48px;
+}
+
+#menu ul li { display: inline; }
+
+#menu ul li a {
+    padding: 12px 20px;
+    display: inline-block;
+
+    /* visual do link */
+    background-color:#4CAF50;
+    color: white;
+    text-decoration: none;
+    border-bottom:3px solid #4CAF50;
+    font-weight: bold;
+    font-family: Arial;
+
+}
+
+#menu ul li a:hover {
+    background-color:#4CAF50;
+    color: white;
+    border-bottom:3px solid #054f77;
+}
+
+#user {
+    text-align: center;
+}
+
+#cadastro {
+    text-align: center;
+}

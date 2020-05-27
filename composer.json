@@ -1,0 +1,26 @@
+{
+    "name": "wjcrypto/composer",
+    "description": "Autoload Composer PSR-4",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Luis",
+            "email": "lfm.vicente@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Wjcrypto\\": "App/src/"
+        }
+    },
+  "require": {
+    "ext-pdo": "*",
+        "pecee/simple-router": "dev-master",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "php-di/php-di": "~4.4 || ^5.0 || ^6.0.0",
+        "psr/log": "^1.1@dev",
+        "monolog/monolog": "^2.0@dev"
+  }
+}

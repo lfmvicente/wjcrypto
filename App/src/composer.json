@@ -1,7 +1,7 @@
 {
-    "name": "wjcrypto/composer",
-    "description": "Autoload Composer PSR-4",
-    "type": "project",
+    "name": "wjcrypto/modulos-php",
+    "description": "Modulos PHP para Wjcrypto",
+    "type": "library",
     "authors": [
         {
             "name": "Luis",
@@ -10,7 +10,9 @@
     ],
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": {"Wjcrypto\\": "App/src/"}
+        "psr-4": {
+            "": "src"
+        }
     }
     
 }
